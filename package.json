@@ -6,7 +6,11 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "check-types": "turbo run check-types",
+    "dev:tim": "turbo run dev --filter=web-tim",
+    "dev:kolorai": "turbo run dev --filter=web-kolorai",
+    "dev:yayasan": "turbo run dev --filter=web-yayasan",
+    "dev:studio": "turbo run dev --filter=kkn"
   },
   "devDependencies": {
     "prettier": "^3.7.4",

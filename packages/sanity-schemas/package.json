@@ -1,0 +1,19 @@
+{
+  "name": "@arungimorotai/sanity-schemas",
+  "version": "0.0.1",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    "./tim/anggota": "./src/tim/anggota.ts",
+    "./tim/programKerja": "./src/tim/programKerja.ts",
+    "./tim/dokumentasi": "./src/tim/dokumentasi.ts",
+    "./tim/mitra": "./src/tim/mitra.ts",
+    "./desa/desa": "./src/desa/desa.ts",
+    "./desa/berita": "./src/desa/berita.ts",
+    "./desa/wisata": "./src/desa/wisata.ts",
+    "./desa/pengurus": "./src/desa/pengurus.ts",
+    "./desa/anggaran": "./src/desa/anggaran.ts",
+    "./desa/galeri": "./src/desa/galeri.ts",
+    "./desa/layanan": "./src/desa/layanan.ts"
+  }
+}
