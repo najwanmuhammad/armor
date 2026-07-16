@@ -18,16 +18,32 @@ import {anggaran} from '@arungimorotai/sanity-schemas/desa/anggaran'
 import {galeri} from '@arungimorotai/sanity-schemas/desa/galeri'
 import {layanan} from '@arungimorotai/sanity-schemas/desa/layanan'
 
+const projectId =
+  process.env.SANITY_STUDIO_PROJECT_ID ||
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
+  process.env.SANITY_PROJECT_ID
+
+const datasetTim = process.env.SANITY_DATASET_TIM
+const datasetDesa = process.env.SANITY_DATASET_DESA
+
+if (!projectId) {
+  throw new Error('Missing SANITY_PROJECT_ID environment variable')
+}
+
+if (!datasetTim) {
+  throw new Error('Missing SANITY_DATASET_TIM environment variable')
+}
+
+if (!datasetDesa) {
+  throw new Error('Missing SANITY_DATASET_DESA environment variable')
+}
+
 export default defineConfig([
   {
     name: 'tim',
     title: 'Website Tim KKN',
-    projectId:
-      process.env.SANITY_STUDIO_PROJECT_ID ||
-      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-      process.env.SANITY_PROJECT_ID ||
-      '2nwcacnk',
-    dataset: 'tim',
+    projectId,
+    dataset: datasetTim,
     basePath: '/tim',
     plugins: [structureTool(), visionTool(), media()],
     schema: {types: [anggota, programKerja, dokumentasi, mitra]},
@@ -35,12 +51,8 @@ export default defineConfig([
   {
     name: 'desa',
     title: 'Website Desa',
-    projectId:
-      process.env.SANITY_STUDIO_PROJECT_ID ||
-      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-      process.env.SANITY_PROJECT_ID ||
-      '2nwcacnk',
-    dataset: 'desa',
+    projectId,
+    dataset: datasetDesa,
     basePath: '/desa',
     plugins: [structureTool(), visionTool(), media()],
     schema: {types: [desa, berita, wisata, pengurus, anggaran, galeri, layanan]},
