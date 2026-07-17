@@ -23,8 +23,8 @@ const projectId =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
   process.env.SANITY_PROJECT_ID
 
-const datasetTim = process.env.SANITY_DATASET_TIM
-const datasetDesa = process.env.SANITY_DATASET_DESA
+const datasetTim = process.env.SANITY_STUDIO_DATASET_TIM
+const datasetDesa = process.env.SANITY_STUDIO_DATASET_DESA
 
 if (!projectId) {
   throw new Error('Missing SANITY_PROJECT_ID environment variable')
