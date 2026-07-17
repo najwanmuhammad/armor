@@ -1,11 +1,18 @@
 import React from "react";
 import Image from "next/image";
-import yayasanImage from "@/src/assets/yayasan.png";
+import yayasanImage from "@/src/assets/Images/yayasan.png";
 
 export default function Hero() {
-    return (
-        <section id="beranda" className="hero-section">
-            <style>{`
+  return (
+    <section id="beranda" className="hero-section">
+      <style>{`
+        @font-face {
+          font-family: 'Kaoly Demo';
+          src: url('/fonts/Kaoly Demo-Regular.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
         .hero-section {
           position: relative;
           width: 100%;
@@ -58,6 +65,7 @@ export default function Hero() {
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
         .hero-title {
+          font-family: 'Kaoly Demo', serif;
           color: #ffffff;
           font-weight: 800;
           font-size: clamp(3.75rem, 9.5vw, 7.25rem);
@@ -90,28 +98,28 @@ export default function Hero() {
         }
       `}</style>
 
-            <Image
-                src={yayasanImage}
-                alt="Latar Belakang Desa Yayasan"
-                fill
-                priority
-                quality={92}
-                style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                }}
-            />
+      <Image
+        src={yayasanImage}
+        alt="Latar Belakang Desa Yayasan"
+        fill
+        priority
+        quality={92}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
 
-            <div className="hero-overlay" />
+      <div className="hero-overlay" />
 
-            <div className="hero-content">
-                <div className="hero-badge">PORTAL RESMI DESA</div>
-                <h1 className="hero-title">Desa Yayasan</h1>
-                <p className="hero-subtitle">
-                    Mewujudkan masa depan Pulau Morotai yang lebih baik melalui program
-                    pendidikan, kesehatan, dan pelestarian lingkungan.
-                </p>
-            </div>
-        </section>
-    );
+      <div className="hero-content">
+        <div className="hero-badge">PORTAL RESMI DESA</div>
+        <h1 className="hero-title">Desa Yayasan</h1>
+        <p className="hero-subtitle">
+          Mewujudkan masa depan Pulau Morotai yang lebih baik melalui program
+          pendidikan, kesehatan, dan pelestarian lingkungan.
+        </p>
+      </div>
+    </section>
+  );
 }

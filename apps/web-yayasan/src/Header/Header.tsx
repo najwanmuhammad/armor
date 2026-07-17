@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LogoPutih } from "@/src/assets/assets";
+import LogoPutih from "@/src/assets/Logo/Logo Putih.png";
 
 const navLinks = [
   { label: "Beranda", href: "#beranda", active: true },
