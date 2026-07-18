@@ -71,7 +71,6 @@ export default function TentangKami() {
           transform: rotate(45deg);
         }
 
-
         /* Underwater bubbles */
         .tentang-bubbles {
           position: absolute;
@@ -99,167 +98,123 @@ export default function TentangKami() {
           top: 20%;
           left: 25%;
           width: 30%;
-          height: 20%;
-          background: rgba(255, 255, 255, 0.3);
+          height: 30%;
+          background: rgba(255, 255, 255, 0.5);
           border-radius: 50%;
-          transform: rotate(-30deg);
         }
 
         @keyframes bubbleRise {
           0% {
-            transform: translateY(0) translateX(0) scale(1);
+            transform: translateY(0) scale(0.6);
             opacity: 0;
           }
-          10% {
+          15% {
+            opacity: 0.8;
+          }
+          85% {
             opacity: 0.6;
           }
-          50% {
-            transform: translateY(-50vh) translateX(15px) scale(1.05);
-            opacity: 0.4;
-          }
-          80% {
-            opacity: 0.2;
-          }
           100% {
-            transform: translateY(-110vh) translateX(-10px) scale(0.8);
+            transform: translateY(-950px) scale(1.3);
             opacity: 0;
           }
         }
 
+        /* Container & Layout */
         .tentang-container {
           position: relative;
           z-index: 2;
           max-width: 1200px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: 4rem;
+          grid-template-columns: 1fr 1.15fr;
+          gap: 4.5rem;
           align-items: center;
         }
 
-        /* Left: Image */
+        /* Image Column */
         .tentang-image-wrapper {
           position: relative;
         }
         .tentang-image-frame {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 5;
+          height: 480px;
           border-radius: 24px;
           overflow: hidden;
-          box-shadow: 
-            0 25px 60px rgba(0, 0, 0, 0.35),
-            0 0 0 1px rgba(255, 255, 255, 0.08);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+          border: 2px solid rgba(255, 255, 255, 0.25);
+          transform: rotate(-1.5deg);
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .tentang-image-frame img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        /* Decorative frame accent */
-        .tentang-image-wrapper::before {
-          content: "";
-          position: absolute;
-          top: -12px;
-          left: -12px;
-          right: 12px;
-          bottom: 12px;
-          border: 2px solid rgba(255, 255, 255, 0.15);
-          border-radius: 28px;
-          pointer-events: none;
-          z-index: -1;
-        }
-        .tentang-image-wrapper::after {
-          content: "";
-          position: absolute;
-          bottom: -12px;
-          right: -12px;
-          left: 12px;
-          top: 12px;
-          border: 2px solid rgba(255, 255, 255, 0.08);
-          border-radius: 28px;
-          pointer-events: none;
-          z-index: -1;
+        .tentang-image-frame:hover {
+          transform: rotate(0deg) scale(1.02);
         }
 
-        /* Right: Content */
+        /* Content Column */
         .tentang-content {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
+          color: #ffffff;
         }
 
         .tentang-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          color: #ffffff;
+          display: inline-block;
+          width: fit-content;
+          padding: 0.5rem 1.25rem;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          border-radius: 9999px;
           font-size: 0.85rem;
           font-weight: 600;
-          padding: 0.5rem 1.25rem;
-          border-radius: 9999px;
-          width: fit-content;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.08em;
           text-transform: uppercase;
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(8px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .tentang-heading {
           font-family: 'Playfair Display', serif;
-          color: #ffffff;
-          font-size: clamp(2.2rem, 5vw, 3.6rem);
+          font-size: clamp(2.4rem, 4vw, 3.5rem);
           font-weight: 800;
           line-height: 1.15;
+          margin: 0;
           letter-spacing: -0.01em;
         }
         .tentang-heading em {
           font-style: italic;
-          color: rgba(255, 255, 255, 0.9);
-        }
-
-        .tentang-desc {
-          color: rgba(255, 255, 255, 0.82);
-          font-size: clamp(0.95rem, 1.5vw, 1.08rem);
-          line-height: 1.75;
-          font-weight: 400;
-          letter-spacing: 0.01em;
+          font-weight: 700;
+          color: #93c5fd;
         }
 
         .tentang-divider {
-          width: 60px;
-          height: 3px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
-          border-radius: 4px;
-          margin: 0.5rem 0;
+          width: 80px;
+          height: 4px;
+          background: linear-gradient(90deg, #93c5fd, transparent);
+          border-radius: 2px;
         }
 
+        .tentang-desc {
+          font-size: clamp(1rem, 1.4vw, 1.12rem);
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.9);
+          margin: 0;
+          font-weight: 400;
+        }
 
-
-        @media (max-width: 900px) {
-          .tentang-section {
-            padding: 4rem 1.25rem;
-          }
+        /* Responsive Design */
+        @media (max-width: 992px) {
           .tentang-container {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
+            gap: 3.5rem;
           }
           .tentang-image-frame {
-            aspect-ratio: 16 / 10;
-            max-height: 350px;
+            height: 400px;
+            transform: rotate(0deg);
           }
-          .tentang-image-wrapper::before,
-          .tentang-image-wrapper::after {
-            display: none;
-          }
-          .tentang-content {
-            text-align: center;
-            align-items: center;
-          }
-          .tentang-content-ornament {
-            align-self: center;
+          .tentang-section {
+            padding: 4.5rem 1.5rem;
           }
         }
 
@@ -288,9 +243,6 @@ export default function TentangKami() {
         <div className="tentang-bubble" style={{ left: "72%", width: "20px", height: "20px", animationDuration: "13s", animationDelay: "1.5s" }} />
         <div className="tentang-bubble" style={{ left: "82%", width: "7px", height: "7px", animationDuration: "8.5s", animationDelay: "5s" }} />
         <div className="tentang-bubble" style={{ left: "90%", width: "15px", height: "15px", animationDuration: "10.5s", animationDelay: "2.5s" }} />
-        <div className="tentang-bubble" style={{ left: "45%", width: "5px", height: "5px", animationDuration: "9.5s", animationDelay: "6s" }} />
-        <div className="tentang-bubble" style={{ left: "8%", width: "16px", height: "16px", animationDuration: "14s", animationDelay: "3.5s" }} />
-        <div className="tentang-bubble" style={{ left: "55%", width: "9px", height: "9px", animationDuration: "11.5s", animationDelay: "7s" }} />
       </div>
 
       <div className="tentang-container">

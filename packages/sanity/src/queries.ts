@@ -40,3 +40,22 @@ export const desaQuery = groq`
   demografi
 }
 `;
+
+export const anggotaQuery = groq`
+*[
+  _type == "anggota"
+] | order(urutan asc, nama asc) {
+  _id,
+  nama,
+  foto,
+  penempatan,
+  klaster,
+  role,
+  jurusan,
+  universitas,
+  quote,
+  urutan,
+  instagram,
+  linkedin
+}
+`;
