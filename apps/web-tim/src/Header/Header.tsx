@@ -5,13 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang Kami", href: "#tentang-kami" },
-  { label: "Inovasi", href: "#inovasi" },
-  { label: "Pencapaian", href: "#pencapaian" },
-  { label: "Artikel", href: "#artikel" },
-  { label: "Galeri", href: "#galeri" },
-  { label: "Sponsor", href: "#sponsor" },
+  { label: "Beranda", href: "/#beranda" },
+  { label: "Tentang Kami", href: "/#tentang-kami" },
+  { label: "Peta", href: "/peta" },
+  { label: "Inovasi", href: "/#inovasi" },
+  { label: "Pencapaian", href: "/#pencapaian" },
+  { label: "Artikel", href: "/#artikel" },
+  { label: "Galeri", href: "/#galeri" },
+  { label: "Sponsor", href: "/#sponsor" },
 ];
 
 export default function Header() {

@@ -1,5 +1,6 @@
 import Header from "@/src/Header/Header";
 import Hero from "@/src/Hero/Hero";
+import TentangKami from "@/src/TentangKami/TentangKami";
 import ProfilDesa from "@/src/ProfilDesa/ProfilDesa";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      <TentangKami />
       <ProfilDesa />
     </>
   );

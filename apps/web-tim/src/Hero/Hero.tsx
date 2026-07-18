@@ -132,18 +132,24 @@ export default function Hero() {
         }
       `}</style>
 
-      {/* Background Image */}
-      <Image
-        src="/KilauCita.png"
-        alt="Latar Belakang Arungi Morotai"
-        fill
-        priority
-        quality={90}
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
         style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
           objectFit: "cover",
           objectPosition: "center",
+          zIndex: 0,
         }}
-      />
+      >
+        <source src="/Video Project 4.mp4" type="video/mp4" />
+      </video>
       <div className="hero-overlay" />
 
       <div className="hero-content">
