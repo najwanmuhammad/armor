@@ -7,7 +7,7 @@ export default function PetaPage() {
   return (
     <>
       <Header />
-      <div style={{ paddingTop: "80px" }}>
+      <div style={{ paddingTop: "70px" }}>
         <Peta />
       </div>
     </>

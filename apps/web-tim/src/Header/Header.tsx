@@ -38,26 +38,24 @@ export default function Header() {
       <style>{`
         .header-nav {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
+          top: 0.4rem;
+          left: 2.5%;
+          right: 2.5%;
           z-index: 100;
-          border-radius: 0;
+          border-radius: 9999px;
           transition: 
-            left 1s cubic-bezier(0.25, 0.1, 0.25, 1),
-            right 1s cubic-bezier(0.25, 0.1, 0.25, 1),
-            top 1s cubic-bezier(0.25, 0.1, 0.25, 1),
-            background 0.8s ease,
-            border-radius 1s cubic-bezier(0.25, 0.1, 0.25, 1),
-            box-shadow 0.8s ease,
-            border 0.8s ease,
-            backdrop-filter 0.8s ease;
+            left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+            right 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+            background 0.6s ease,
+            border 0.6s ease,
+            box-shadow 0.6s ease,
+            backdrop-filter 0.6s ease;
           background: transparent;
           border: 1px solid transparent;
           box-shadow: none;
         }
         .header-scrolled {
-          top: 1.1rem !important;
+          top: 0.4rem !important;
           left: 12.5%;
           right: 12.5%;
           background: rgba(255, 255, 255, 0.96) !important;
@@ -74,11 +72,10 @@ export default function Header() {
           width: 100%;
           max-width: 1560px;
           margin: 0 auto;
-          padding: 1.5rem 4.5%;
-          transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+          padding: 0.6rem 2.2rem;
         }
         .header-scrolled .header-inner {
-          padding: 0.65rem 2.2rem !important;
+          padding: 0.6rem 2.2rem !important;
           max-width: 100%;
         }
         .header-logo {

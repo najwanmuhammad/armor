@@ -69,55 +69,6 @@ export default function Hero() {
           text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Scroll indicator */
-        .scroll-indicator {
-          position: absolute;
-          bottom: 2.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 10;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.5rem;
-          animation: scrollBounce 2s ease-in-out infinite;
-        }
-        .scroll-label {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.7rem;
-          font-weight: 600;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-        }
-        .scroll-mouse {
-          width: 24px;
-          height: 38px;
-          border: 2px solid rgba(255, 255, 255, 0.5);
-          border-radius: 12px;
-          position: relative;
-        }
-        .scroll-mouse::after {
-          content: "";
-          position: absolute;
-          top: 6px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 4px;
-          height: 8px;
-          background: rgba(255, 255, 255, 0.7);
-          border-radius: 4px;
-          animation: scrollDot 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollBounce {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(8px); }
-        }
-        @keyframes scrollDot {
-          0%, 100% { opacity: 1; top: 6px; }
-          50% { opacity: 0.3; top: 16px; }
-        }
-
         @media (max-width: 768px) {
           .hero-section {
             min-height: 100vh;
@@ -125,9 +76,6 @@ export default function Hero() {
           }
           .hero-title {
             margin-bottom: 1.5rem;
-          }
-          .scroll-indicator {
-            bottom: 1.5rem;
           }
         }
       `}</style>
@@ -164,12 +112,6 @@ export default function Hero() {
         />
         <p className="hero-subtitle">KKN PPM UGM Arungi Morotai</p>
         <p className="hero-period">Periode II (Juni–Agustus) 2026</p>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="scroll-indicator">
-        <span className="scroll-label">Scroll</span>
-        <div className="scroll-mouse" />
       </div>
     </section>
   );
