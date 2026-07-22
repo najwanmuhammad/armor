@@ -8,11 +8,11 @@ const navLinks = [
   { label: "Beranda", href: "/#beranda" },
   { label: "Tentang Kami", href: "/#tentang-kami" },
   { label: "Peta", href: "/peta" },
-  { label: "Inovasi", href: "/#inovasi" },
-  { label: "Pencapaian", href: "/#pencapaian" },
-  { label: "Artikel", href: "/#artikel" },
-  { label: "Galeri", href: "/#galeri" },
-  { label: "Sponsor", href: "/#sponsor" },
+  { label: "Tema", href: "/#tema" },
+  { label: "Lokasi", href: "/#lokasi" },
+  { label: "Program Kerja", href: "/#program-kerja" },
+  { label: "Sponsor & Mitra", href: "/#sponsor-mitra" },
+  { label: "Dokumentasi", href: "/dokumentasi" },
 ];
 
 export default function Header() {
@@ -38,26 +38,29 @@ export default function Header() {
       <style>{`
         .header-nav {
           position: fixed;
-          top: 0.4rem;
-          left: 2.5%;
-          right: 2.5%;
+          top: 0.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 95%;
+          max-width: 1560px;
           z-index: 100;
           border-radius: 9999px;
           transition: 
-            left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-            right 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-            background 0.6s ease,
-            border 0.6s ease,
-            box-shadow 0.6s ease,
-            backdrop-filter 0.6s ease;
+            width 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+            max-width 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+            background 0.5s ease,
+            border 0.5s ease,
+            box-shadow 0.5s ease,
+            backdrop-filter 0.5s ease,
+            top 0.5s ease;
           background: transparent;
           border: 1px solid transparent;
           box-shadow: none;
         }
         .header-scrolled {
-          top: 0.4rem !important;
-          left: 12.5%;
-          right: 12.5%;
+          top: 0.5rem !important;
+          width: 86% !important;
+          max-width: 1340px !important;
           background: rgba(255, 255, 255, 0.96) !important;
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
@@ -69,13 +72,14 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 1.25rem;
           width: 100%;
           max-width: 1560px;
           margin: 0 auto;
-          padding: 0.6rem 2.2rem;
+          padding: 0.6rem 2rem;
         }
         .header-scrolled .header-inner {
-          padding: 0.6rem 2.2rem !important;
+          padding: 0.6rem 2rem !important;
           max-width: 100%;
         }
         .header-logo {
@@ -87,7 +91,7 @@ export default function Header() {
         .header-links {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 0.35rem;
           list-style: none;
           margin: 0;
           padding: 0;
@@ -95,10 +99,10 @@ export default function Header() {
         .header-links li a {
           color: rgba(255, 255, 255, 0.95);
           text-decoration: none;
-          font-size: 1.08rem;
+          font-size: 1.01rem;
           font-weight: 600;
           letter-spacing: -0.01em;
-          padding: 0.6rem 1.25rem;
+          padding: 0.48rem 0.92rem;
           border-radius: 9999px;
           transition: all 0.25s ease;
           white-space: nowrap;
@@ -189,21 +193,27 @@ export default function Header() {
         }
 
         @media (max-width: 1024px) {
+          .header-nav {
+            width: 95%;
+            max-width: 100%;
+          }
+          .header-scrolled {
+            width: 86% !important;
+            max-width: 100% !important;
+          }
           .header-links {
             display: none;
           }
           .header-hamburger {
             display: flex;
           }
-          .header-scrolled {
-            left: 5%;
-            right: 5%;
-          }
         }
         @media (max-width: 640px) {
+          .header-nav {
+            width: 94%;
+          }
           .header-scrolled {
-            left: 3%;
-            right: 3%;
+            width: 90% !important;
           }
         }
       `}</style>

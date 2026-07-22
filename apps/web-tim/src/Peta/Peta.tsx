@@ -3,22 +3,12 @@
 import dynamic from "next/dynamic";
 import { mapCenter, mapZoom, kknLocations, morotaiTarget } from "./data/mapData";
 import { morotaiIslandTarget, morotaiDestinations } from "./components/PulauMorotai/data/morotaiData";
+import SaberLoadingScreen from "@/src/Loading/SaberLoadingScreen";
 
 const InteractiveMap = dynamic(() => import("./components/map/Map/InteractiveMap"), {
     ssr: false,
     loading: () => (
-        <div style={{
-            width: "100%",
-            height: "100%",
-            background: "#1a2e4a",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "rgba(255,255,255,0.5)",
-            fontSize: "1rem",
-        }}>
-            Memuat peta interaktif...
-        </div>
+        <SaberLoadingScreen message="PETA INTERAKTIF MOROTAI" subMessage="Memuat sistem navigasi geospasial & klaster pengabdian..." />
     ),
 });
 

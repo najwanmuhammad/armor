@@ -12,8 +12,8 @@ export default function TentangKami() {
         .tentang-section {
           position: relative;
           width: 100%;
-          padding: 6rem 2rem 9rem 2rem;
-          background: linear-gradient(135deg, #003D6E 0%, #0a4a7a 30%, #437BBF 70%, #003D6E 100%);
+          padding: 6rem 2rem 7.5rem 2rem;
+          background: linear-gradient(180deg, #00305a 0%, #0a518a 40%, #2974bf 80%, #0d4678 100%);
           overflow: hidden;
           z-index: 10;
         }
@@ -233,10 +233,7 @@ export default function TentangKami() {
             transform: rotate(0deg);
           }
           .tentang-section {
-            padding: 4.5rem 1.5rem 7rem 1.5rem;
-          }
-          .tentang-wave-divider {
-            bottom: -1px;
+            padding: 4.5rem 1.5rem 6rem 1.5rem;
           }
           .tentang-wave-divider svg {
             height: 60px;
@@ -320,12 +317,12 @@ export default function TentangKami() {
         </div>
       </div>
 
-      {/* Wave Curve shaped exactly like the pink example, using 1 solid dark navy blue color (#001c38) */}
+      {/* Wave Curve transitioning smoothly into TimProfile (#0d4678) */}
       <div className="tentang-wave-divider">
         <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
           <path 
             d="M0,50 C360,120 1080,10 1440,40 L1440,120 L0,120 Z" 
-            fill="#001c38"
+            fill="#0d4678"
           />
         </svg>
       </div>

@@ -471,10 +471,111 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         .tim-section {
           position: relative;
           width: 100%;
-          padding: 5rem 2rem 7.5rem 2rem;
-          background: #001c38;
+          padding: 3.5rem 2rem 8.5rem 2rem;
+          background: linear-gradient(180deg, #0d4678 0%, #1c62a3 30%, #15548e 70%, #093156 100%);
           overflow: hidden;
           z-index: 10;
+        }
+
+        /* ── Wave Divider to ProfilDesa ── */
+        .tim-wave-divider {
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          overflow: hidden;
+          line-height: 0;
+          z-index: 20;
+          pointer-events: none;
+        }
+
+        .tim-wave-divider svg {
+          position: relative;
+          display: block;
+          width: calc(100% + 1.3px);
+          height: 120px;
+        }
+
+        /* Decorative armor logo ornaments */
+        .tim-ornament {
+          position: absolute;
+          opacity: 0.12;
+          pointer-events: none;
+          z-index: 0;
+          background-image: url("/logo armor.png");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+        .tim-ornament-top-left {
+          top: 3rem;
+          left: 2rem;
+          width: 170px;
+          height: 170px;
+          transform: rotate(-15deg);
+        }
+        .tim-ornament-mid-right {
+          top: 45%;
+          right: 2rem;
+          width: 200px;
+          height: 200px;
+          transform: rotate(20deg);
+        }
+        .tim-ornament-bottom-left {
+          bottom: 7rem;
+          left: 2.5rem;
+          width: 160px;
+          height: 160px;
+          transform: rotate(40deg);
+        }
+
+        /* Underwater bubbles */
+        .tim-bubbles {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .tim-bubble {
+          position: absolute;
+          bottom: -20px;
+          background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.08) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+          );
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+          animation: timBubbleRise linear infinite;
+        }
+        .tim-bubble::after {
+          content: "";
+          position: absolute;
+          top: 20%;
+          left: 25%;
+          width: 30%;
+          height: 30%;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 50%;
+        }
+
+        @keyframes timBubbleRise {
+          0% {
+            transform: translateY(0) scale(0.6);
+            opacity: 0;
+          }
+          15% {
+            opacity: 0.8;
+          }
+          85% {
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateY(-1150px) scale(1.3);
+            opacity: 0;
+          }
         }
 
         /* ── Blue Woven Tenun Fabric Background Texture Layer ── */
@@ -1015,6 +1116,12 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         }
 
         @media (max-width: 640px) {
+          .tim-section {
+            padding: 2.5rem 1.5rem 6.5rem 1.5rem;
+          }
+          .tim-wave-divider svg {
+            height: 60px;
+          }
           .tim-container {
             gap: 2.5rem;
           }
@@ -1027,6 +1134,25 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         }
       `}</style>
 
+      {/* Decorative armor logo ornaments */}
+      <div className="tim-ornament tim-ornament-top-left" />
+      <div className="tim-ornament tim-ornament-mid-right" />
+      <div className="tim-ornament tim-ornament-bottom-left" />
+
+      {/* Underwater bubbles */}
+      <div className="tim-bubbles">
+        <div className="tim-bubble" style={{ left: "6%", width: "14px", height: "14px", animationDuration: "9s", animationDelay: "0s" }} />
+        <div className="tim-bubble" style={{ left: "14%", width: "9px", height: "9px", animationDuration: "11s", animationDelay: "2.5s" }} />
+        <div className="tim-bubble" style={{ left: "24%", width: "19px", height: "19px", animationDuration: "13s", animationDelay: "1s" }} />
+        <div className="tim-bubble" style={{ left: "36%", width: "7px", height: "7px", animationDuration: "8.5s", animationDelay: "4s" }} />
+        <div className="tim-bubble" style={{ left: "48%", width: "15px", height: "15px", animationDuration: "12s", animationDelay: "0.5s" }} />
+        <div className="tim-bubble" style={{ left: "58%", width: "11px", height: "11px", animationDuration: "7.5s", animationDelay: "3s" }} />
+        <div className="tim-bubble" style={{ left: "68%", width: "22px", height: "22px", animationDuration: "14s", animationDelay: "1.8s" }} />
+        <div className="tim-bubble" style={{ left: "78%", width: "8px", height: "8px", animationDuration: "9.5s", animationDelay: "5s" }} />
+        <div className="tim-bubble" style={{ left: "88%", width: "16px", height: "16px", animationDuration: "11.5s", animationDelay: "2s" }} />
+        <div className="tim-bubble" style={{ left: "94%", width: "12px", height: "12px", animationDuration: "10s", animationDelay: "3.5s" }} />
+      </div>
+
       <div className="tim-container">
         <div className="tim-header">
           <span className="tentang-badge">Tim Arungi Morotai</span>
@@ -1037,6 +1163,13 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
             Mahasiswa dari berbagai rumpun ilmu Universitas Gadjah Mada yang bersinergi
             menginovasikan teknologi, tata kelola desa, dan pelestarian alam Pulau Morotai.
           </p>
+          <Image
+            src="/logo armor.png"
+            alt="Logo Arungi Morotai"
+            width={55}
+            height={55}
+            style={{ objectFit: "contain", opacity: 0.35, marginTop: "0.5rem" }}
+          />
         </div>
 
         {activeKlaster === null ? (
@@ -1175,6 +1308,16 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
             </div>
           </>
         )}
+      </div>
+
+      {/* Wave Curve transitioning to TemaTimeline (#062340) */}
+      <div className="tim-wave-divider">
+        <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+          <path 
+            d="M0,50 C360,120 1080,10 1440,40 L1440,120 L0,120 Z" 
+            fill="#062340"
+          />
+        </svg>
       </div>
     </section>
   );

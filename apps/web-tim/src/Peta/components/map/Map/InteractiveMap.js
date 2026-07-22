@@ -6,6 +6,7 @@ import LocationSelector from "../../Effect/LocationSelector";
 import MapGuts from "./MapGuts";
 import { MorotaiSidePanel } from "../../PulauMorotai";
 import PhotoModal from "../../Effect/PhotoModal";
+import SaberLoadingScreen from "@/src/Loading/SaberLoadingScreen";
 
 export default function InteractiveMap({ center, zoom, kknLocations, morotaiTarget, morotaiIslandTarget, morotaiDestinations }) {
     const [isClient, setIsClient] = useState(false);
@@ -23,9 +24,12 @@ export default function InteractiveMap({ center, zoom, kknLocations, morotaiTarg
         setIsClient(true);
     }, []);
 
-    const handleSelectLocation = useCallback((loc) => {
-        setActiveLocation(loc);
-    }, []);
+    const handleSelectLocation = useCallback((id) => {
+        const found = kknLocations.find(l => l.id === id);
+        if (found) {
+            setActiveLocation(found);
+        }
+    }, [kknLocations]);
 
     const handleResetOverview = useCallback(() => {
         setActiveLocation(null);
@@ -36,17 +40,7 @@ export default function InteractiveMap({ center, zoom, kknLocations, morotaiTarg
     }, []);
 
     if (!isClient) {
-        return (
-            <div className="map-root map-fallback">
-                <div className="map-fallback__card">
-                    <strong>Memuat peta interaktif...</strong>
-                    <div className="map-meta">
-                        <span>Desa Yayasan & Desa Kolorai, Morotai</span>
-                        <span>Marker akan tampil setelah halaman aktif di browser.</span>
-                    </div>
-                </div>
-            </div>
-        );
+        return <SaberLoadingScreen message="PETA INTERAKTIF MOROTAI" subMessage="Memuat sistem navigasi geospasial & klaster pengabdian..." />;
     }
 
     return (
