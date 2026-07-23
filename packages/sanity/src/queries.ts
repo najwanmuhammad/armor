@@ -59,3 +59,16 @@ export const anggotaQuery = groq`
   linkedin
 }
 `;
+
+export const mitraQuery = groq`
+*[
+  _type == "mitra"
+] | order(tipe asc, urutan asc) {
+  _id,
+  nama,
+  logo,
+  tipe,
+  url,
+  urutan
+}
+`;

@@ -578,6 +578,27 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
           }
         }
 
+        /* Background Vector Map bercampur dengan gradasi biru pekat */
+        .tim-section-bg-vector {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: url('/images/peta_vector.png');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          transform: translateZ(0);
+          will-change: transform;
+          mix-blend-mode: soft-light;
+          opacity: 0.25;
+          filter: invert(1) contrast(1.4) brightness(1.15);
+          mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+
         /* ── Blue Woven Tenun Fabric Background Texture Layer ── */
         .tenun-bg-layer {
           position: absolute;
@@ -606,18 +627,30 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         }
 
         .tentang-badge {
-          display: inline-block;
-          padding: 0.55rem 1.4rem;
-          background: rgba(255, 255, 255, 0.14);
-          border: 1px solid rgba(255, 255, 255, 0.28);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          color: #ffffff;
-          font-size: 0.85rem;
+          font-size: 0.86rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
 
         .tim-header {
@@ -878,49 +911,54 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
           color: #ffffff;
         }
 
-        /* ── Carved Wooden Pill Button (Jelajahi Seluruh Anggota Tim) ── */
+        /* ── Carved Teak Wood Pill Button (Jelajahi Seluruh Anggota Tim) ── */
         .more-klaster-btn {
           position: relative;
-          margin: 2rem auto 0 auto;
+          margin: 2.2rem auto 0 auto;
           display: inline-flex;
           align-items: center;
-          gap: 0.85rem;
-          background: linear-gradient(168deg, #7c4d29 0%, #59351a 50%, #3d2310 100%);
-          color: #fff8ee;
-          border: 2px solid #2f1b0c;
-          border-top-color: #9c6338;
-          border-left-color: #85522e;
-          border-bottom-color: #1e0f05;
-          padding: 1rem 3.2rem;
-          border-radius: 999px;
-          font-size: 0.98rem;
+          justify-content: center;
+          gap: 0.75rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.8rem 2.4rem;
+          border-radius: 9999px;
+          font-size: 0.95rem;
           font-weight: 700;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.04em;
           cursor: pointer;
           box-shadow: 
-            0 16px 35px rgba(0, 10, 25, 0.65),
-            inset 0 2px 4px rgba(255, 215, 160, 0.38),
-            inset 0 -4px 8px rgba(15, 7, 2, 0.85);
-          transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-          overflow: hidden;
-        }
-
-        .more-klaster-btn__wood-noise {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          opacity: 0.55;
-          mix-blend-mode: multiply;
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .more-klaster-btn:hover {
-          background: linear-gradient(168deg, #945d36 0%, #694021 50%, #492b15 100%);
-          border-top-color: #b87b48;
-          transform: translateY(-4px) scale(1.02);
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #5c3b1e 0%, #3d2612 55%, #24160a 100%);
+          border-color: rgba(230, 184, 106, 0.85);
+          transform: translateY(-3px) scale(1.02);
           box-shadow: 
-            0 24px 45px rgba(0, 10, 25, 0.8),
-            inset 0 2px 4px rgba(255, 230, 180, 0.45),
-            inset 0 -4px 8px rgba(15, 7, 2, 0.95);
+            0 14px 28px rgba(0, 0, 0, 0.75),
+            inset 0 1px 3px rgba(255, 240, 180, 0.5),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.95);
         }
 
         /* ── Filter & Back Navigation (Saat mode lihat anggota) ───────────────────────── */
@@ -936,22 +974,47 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         .back-klaster-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          background: rgba(255, 255, 255, 0.12);
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          padding: 0.5rem 1.4rem;
-          border-radius: 999px;
-          font-size: 0.86rem;
-          font-weight: 600;
+          gap: 0.6rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.65rem 1.6rem;
+          border-radius: 9999px;
+          font-size: 0.88rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
           cursor: pointer;
-          transition: all 0.25s ease;
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .back-klaster-btn:hover {
-          background: #ffffff;
-          color: #003D6E;
-          transform: translateX(-4px);
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #5c3b1e 0%, #3d2612 55%, #24160a 100%);
+          border-color: rgba(230, 184, 106, 0.85);
+          transform: translateY(-2px);
+          box-shadow: 
+            0 12px 24px rgba(0, 0, 0, 0.75),
+            inset 0 1px 3px rgba(255, 240, 180, 0.5),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.95);
         }
 
         .tim-filters {
@@ -1134,6 +1197,9 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
         }
       `}</style>
 
+      {/* Background Vector Map */}
+      <div className="tim-section-bg-vector" />
+
       {/* Decorative armor logo ornaments */}
       <div className="tim-ornament tim-ornament-top-left" />
       <div className="tim-ornament tim-ornament-mid-right" />
@@ -1242,15 +1308,8 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
               className="more-klaster-btn"
               onClick={() => setActiveKlaster("Semua")}
             >
-              <svg className="more-klaster-btn__wood-noise" viewBox="0 0 200 60" preserveAspectRatio="none">
-                <filter id="pill-wood-grain">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.015 0.45" numOctaves="3" result="noise" />
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.18  0 0 0 0 0.09  0 0 0 0 0.03  0 0 0 0.38 0" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#pill-wood-grain)" />
-              </svg>
-              <span style={{ position: "relative", zIndex: 2 }}>Jelajahi Seluruh Anggota Tim</span>
-              <span style={{ position: "relative", zIndex: 2, fontSize: "1.1rem" }}>→</span>
+              <span>Jelajahi Seluruh Anggota Tim</span>
+              <span style={{ fontSize: "1.1rem" }}>→</span>
             </button>
           </>
         ) : (

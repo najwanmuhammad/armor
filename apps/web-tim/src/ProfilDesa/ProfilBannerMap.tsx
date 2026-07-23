@@ -27,13 +27,13 @@ function SatelliteLayer() {
   return null;
 }
 
-// Custom Marker Builder for Banner Overview
-const buildBannerIcon = (name: string, color: string = "#38bdf8") => {
+// Custom Marker Builder using Teak Wood Plaque Style (Tanpa Warna Warni)
+const buildBannerIcon = (name: string) => {
   return L.divIcon({
     className: "banner-custom-marker",
     html: `
-      <div style="display: inline-flex; align-items: center; gap: 7px; background: rgba(6, 22, 43, 0.96); border: 2px solid ${color}; padding: 6px 14px; border-radius: 9999px; box-shadow: 0 4px 18px rgba(0,0,0,0.85), 0 0 15px ${color}; color: #ffffff; font-size: 12px; font-weight: 800; white-space: nowrap; backdrop-filter: blur(6px); letter-spacing: 0.02em;">
-        <span style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: ${color}; box-shadow: 0 0 10px ${color};"></span>
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px), linear-gradient(135deg, #3d2612 0%, #24160a 60%, #150d06 100%); border: 1px solid rgba(230, 184, 106, 0.65); padding: 6px 15px; border-radius: 9999px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.75), inset 0 1px 3px rgba(255, 230, 160, 0.4), inset 0 -2px 5px rgba(0, 0, 0, 0.9); color: #fdf6e9; font-size: 12px; font-weight: 800; white-space: nowrap; letter-spacing: 0.03em;">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ffd700; box-shadow: 0 0 8px rgba(255, 215, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.6);"></span>
         <span>${name}</span>
       </div>
     `,
@@ -80,7 +80,7 @@ export default function ProfilBannerMap() {
       >
         <SatelliteLayer />
         {locations.map((loc, idx) => {
-          const markerIcon = buildBannerIcon(loc.name, loc.color);
+          const markerIcon = buildBannerIcon(loc.name);
           return (
             <Marker key={idx} position={loc.coords} icon={markerIcon} />
           );

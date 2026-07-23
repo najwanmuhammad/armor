@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Tema", href: "/#tema" },
   { label: "Lokasi", href: "/#lokasi" },
   { label: "Program Kerja", href: "/#program-kerja" },
-  { label: "Sponsor & Mitra", href: "/#sponsor-mitra" },
+  { label: "Sponsor", href: "/#sponsor-mitra" },
   { label: "Dokumentasi", href: "/dokumentasi" },
 ];
 

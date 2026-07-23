@@ -7,7 +7,7 @@ import ProfilDesa from "@/src/ProfilDesa/ProfilDesa";
 import ProgramKerja from "@/src/ProgramKerja/ProgramKerja";
 import SponsorMitra from "@/src/SponsorMitra/SponsorMitra";
 import KontakFooter from "@/src/Kontak/KontakFooter";
-import { createSanityClient, getAnggota } from "@arungimorotai/sanity";
+import { createSanityClient, getAnggota, getMitra } from "@arungimorotai/sanity";
 
 export const revalidate = 0; // Auto fetch terbaru setiap refresh halaman
 
@@ -18,7 +18,10 @@ export default async function Home() {
     useCdn: false, // Set false agar data live dari Sanity Studio langsung ter-update saat direfresh!
   });
 
-  const rawMembers = await getAnggota(client).catch(() => []);
+  const [rawMembers, rawMitra] = await Promise.all([
+    getAnggota(client).catch(() => []),
+    getMitra(client).catch(() => [])
+  ]);
 
   return (
     <>
@@ -29,7 +32,7 @@ export default async function Home() {
       <TemaTimeline />
       <ProfilDesa />
       <ProgramKerja />
-      <SponsorMitra />
+      <SponsorMitra mitraData={rawMitra} />
       <KontakFooter />
     </>
   );

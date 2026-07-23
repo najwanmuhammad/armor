@@ -102,17 +102,28 @@ export default function DokumentasiGaleri() {
         }
         .dok-badge {
           display: inline-block;
-          background: rgba(56, 189, 248, 0.18);
-          color: #38bdf8;
-          border: 1px solid rgba(56, 189, 248, 0.4);
-          padding: 0.45rem 1.3rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          font-size: 0.88rem;
+          font-size: 0.86rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           margin-bottom: 1.2rem;
-          backdrop-filter: blur(8px);
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
         .dok-title {
           font-family: 'Playfair Display', serif;

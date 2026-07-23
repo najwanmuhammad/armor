@@ -179,18 +179,31 @@ export default function TentangKami() {
         }
 
         .tentang-badge {
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
           width: fit-content;
-          padding: 0.5rem 1.25rem;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.25);
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          font-size: 0.85rem;
-          font-weight: 600;
+          font-size: 0.86rem;
+          font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          backdrop-filter: blur(8px);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
 
         .tentang-heading {
@@ -248,7 +261,30 @@ export default function TentangKami() {
             font-size: 0.75rem;
           }
         }
+
+        /* Background Vector Map bercampur dengan gradasi biru pekat */
+        .tentang-section-bg-vector {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: url('/images/peta_vector.png');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          transform: translateZ(0); /* GPU acceleration */
+          will-change: transform;
+          mix-blend-mode: soft-light;
+          opacity: 0.25;
+          filter: invert(1) contrast(1.4) brightness(1.15);
+          mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
       `}</style>
+
+      {/* Background Vector Map */}
+      <div className="tentang-section-bg-vector" />
 
       {/* Decorative elements */}
       <div className="tentang-ornament tentang-ornament-top-right" />

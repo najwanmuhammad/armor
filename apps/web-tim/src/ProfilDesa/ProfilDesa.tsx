@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { MapPin, Compass, Anchor, CheckCircle2, Navigation, Landmark, ArrowRight } from "lucide-react";
+
 import SaberLoadingScreen from "@/src/Loading/SaberLoadingScreen";
 
 const ProfilBannerMap = dynamic(() => import("./ProfilBannerMap"), {
@@ -93,21 +93,29 @@ export default function ProfilDesa() {
         .profil-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          background: linear-gradient(135deg, rgba(28, 46, 68, 0.85) 0%, rgba(12, 26, 41, 0.95) 100%);
-          color: #f3e5c8;
-          border: 1px solid rgba(230, 184, 106, 0.45);
-          padding: 0.5rem 1.4rem;
+          gap: 0.55rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          font-size: 0.85rem;
+          font-size: 0.86rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           width: fit-content;
           box-shadow: 
-            inset 0 1px 3px rgba(255, 242, 161, 0.35),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.8),
-            0 6px 16px rgba(0, 0, 0, 0.45);
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
         .profil-title {
           font-family: 'Playfair Display', serif;
@@ -144,17 +152,29 @@ export default function ProfilDesa() {
         .desa-section-tag {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
-          background: rgba(56, 189, 248, 0.16);
-          color: #38bdf8;
-          border: 1px solid rgba(56, 189, 248, 0.4);
-          padding: 0.4rem 1.3rem;
+          gap: 0.55rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          font-size: 0.84rem;
+          font-size: 0.86rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           margin-bottom: 0.85rem;
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
         .desa-section-title {
           font-family: 'Playfair Display', serif;
@@ -274,18 +294,30 @@ export default function ProfilDesa() {
           position: absolute;
           top: 18px;
           left: 18px;
-          background: linear-gradient(135deg, rgba(28, 46, 68, 0.9) 0%, rgba(12, 26, 41, 0.98) 100%);
-          color: #ffd700;
-          border: 1px solid rgba(230, 184, 106, 0.5);
-          padding: 0.45rem 1.1rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.45rem 1.2rem;
           border-radius: 9999px;
           font-size: 0.82rem;
           font-weight: 700;
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+          letter-spacing: 0.05em;
+          box-shadow: 
+            0 6px 16px rgba(0, 0, 0, 0.65),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
           z-index: 3;
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.45rem;
         }
         .desa-info-body {
           padding: 2.2rem 2rem;
@@ -315,48 +347,79 @@ export default function ProfilDesa() {
           margin-top: auto;
         }
         .desa-pill {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.18);
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 2px,
+              rgba(0, 0, 0, 0.15) 2px,
+              rgba(0, 0, 0, 0.15) 4px
+            ),
+            linear-gradient(135deg, #3d2612 0%, #24160a 60%, #150d06 100%);
+          border: 1px solid rgba(230, 184, 106, 0.55);
           border-radius: 9999px;
-          padding: 0.35rem 0.9rem;
+          padding: 0.4rem 1rem;
           font-size: 0.82rem;
-          color: #e0f2fe;
-          font-weight: 600;
+          color: #fce8c5;
+          font-weight: 700;
           display: flex;
           align-items: center;
-          gap: 0.35rem;
+          gap: 0.4rem;
+          box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.35),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.9);
         }
 
-
-
-        /* Tombol Kecil Masuk ke Peta Interaktif */
+        /* Tombol Kecil Masuk ke Peta Interaktif (Teak Wood Plaque Button) */
         .profil-peta-btn-container {
-          margin-top: 2.6rem;
+          margin-top: 2.8rem;
           display: flex;
           justify-content: center;
         }
         .profil-peta-mini-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.65rem;
-          padding: 0.85rem 1.8rem;
-          background: rgba(7, 40, 75, 0.88);
-          border: 1.5px solid rgba(56, 189, 248, 0.5);
+          gap: 0.75rem;
+          padding: 0.85rem 2.4rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
           border-radius: 9999px;
-          color: #e0f2fe;
           font-size: 0.96rem;
           font-weight: 700;
+          letter-spacing: 0.04em;
           text-decoration: none;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.25);
-          transition: all 0.3s ease;
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .profil-peta-mini-btn:hover {
-          background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-          border-color: #38bdf8;
-          color: #ffffff;
-          transform: translateY(-3px);
-          box-shadow: 0 14px 30px rgba(2, 132, 199, 0.55), 0 0 22px rgba(56, 189, 248, 0.5);
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #5c3b1e 0%, #3d2612 55%, #24160a 100%);
+          border-color: rgba(230, 184, 106, 0.85);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 
+            0 14px 28px rgba(0, 0, 0, 0.75),
+            inset 0 1px 3px rgba(255, 240, 180, 0.5),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.95);
         }
 
         /* Wave Curve transitioning to ProgramKerja (#062544) */
@@ -410,16 +473,84 @@ export default function ProfilDesa() {
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
+          /* Removed background-attachment: fixed to prevent scroll lag */
+          transform: translateZ(0);
+          will-change: transform;
           mix-blend-mode: soft-light;
           opacity: 0.48;
           filter: invert(1) contrast(1.4) brightness(1.15);
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
+
+        /* Animasi Gelembung Renik Samudra */
+        .profil-bubbles-wrapper {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        .ocean-bubble {
+          position: absolute;
+          bottom: -40px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
+          border: 1px solid rgba(186, 230, 253, 0.65);
+          box-shadow: 
+            inset 0 0 3px rgba(255, 255, 255, 0.85),
+            0 0 6px rgba(56, 189, 248, 0.35);
+          animation: floatUp var(--bubble-dur) linear infinite;
+          animation-delay: var(--bubble-del);
+          left: var(--bubble-left);
+          width: var(--bubble-size);
+          height: var(--bubble-size);
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+
+        @keyframes floatUp {
+          0% {
+            transform: translate3d(0, 0, 0) scale(0.7);
+            opacity: 0;
+          }
+          15% {
+            opacity: 0.75;
+          }
+          85% {
+            opacity: 0.75;
+          }
+          100% {
+            transform: translate3d(0, -980px, 0) scale(1.1);
+            opacity: 0;
+          }
+        }
+
       `}</style>
 
       {/* Background Vector Map bercampur dengan gradasi biru */}
       <div className="profil-section-bg-vector" />
+
+      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
+      <div className="profil-bubbles-wrapper">
+        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
+      </div>
 
       {/* Banner Top Seamlessly Blended (Menyatu tanpa garis potong) */}
       <div className="profil-banner" style={{ position: "relative", zIndex: 5 }}>
@@ -433,7 +564,6 @@ export default function ProfilDesa() {
 
         <div className="profil-content">
           <span className="profil-badge">
-            <Compass className="w-4 h-4 text-[#ffd700]" />
             Lokasi & Wilayah KKN
           </span>
           <h2 className="profil-title">
@@ -449,7 +579,6 @@ export default function ProfilDesa() {
       <div className="desa-showcase-section">
         <div className="desa-section-header">
           <span className="desa-section-tag">
-            <Navigation className="w-4 h-4 text-[#38bdf8]" />
             Fokus Lokasi Pengabdian
           </span>
           <h3 className="desa-section-title">2 Desa Pesisir Utama di Pulau Morotai</h3>
@@ -458,12 +587,9 @@ export default function ProfilDesa() {
         <div className="desa-cards-grid">
           {/* Card Lokasi 1: Desa Kolorai (Glow Cyan Kelap Kelip) */}
           <div className="desa-card desa-card--kolorai">
-            <span className="kk-sparkle text-[#38bdf8]" style={{ top: "-10px", left: "25px", "--kk-size": "18px", "--kk-dur": "2.2s", "--kk-del": "0s" } as React.CSSProperties}>✨</span>
-            <span className="kk-sparkle text-[#7dd3fc]" style={{ bottom: "-8px", right: "30px", "--kk-size": "15px", "--kk-dur": "2.6s", "--kk-del": "1.1s" } as React.CSSProperties}>✨</span>
 
             <div className="desa-img-box">
               <span className="desa-img-badge">
-                <MapPin className="w-4 h-4 text-[#ffd700]" />
                 Lokasi 1
               </span>
               <Image
@@ -475,27 +601,23 @@ export default function ProfilDesa() {
             </div>
             <div className="desa-info-body">
               <h4 className="desa-title">
-                <CheckCircle2 className="w-6 h-6 text-[#38bdf8]" />
                 Desa Kolorai
               </h4>
               <p className="desa-desc">
                 Desa pesisir maritim dengan keindahan ekowisata bahari kelas dunia, potensi usaha pesisir, serta menjadi pusat pengabdian digitalisasi pemetaan batas wilayah berbasis spasial (GIS) oleh tim KKN UGM.
               </p>
               <div className="desa-highlights">
-                <span className="desa-pill"><Anchor className="w-3.5 h-3.5 text-[#7dd3fc]" /> Ekowisata Pesisir</span>
-                <span className="desa-pill"><Navigation className="w-3.5 h-3.5 text-[#7dd3fc]" /> Pemetaan Spasial GIS</span>
+                <span className="desa-pill">Ekowisata Pesisir</span>
+                <span className="desa-pill">Pemetaan Spasial GIS</span>
               </div>
             </div>
           </div>
 
           {/* Card Lokasi 2: Desa Yayasan (Glow Gold Kelap Kelip) */}
           <div className="desa-card desa-card--yayasan">
-            <span className="kk-sparkle text-[#ffd700]" style={{ top: "-10px", right: "25px", "--kk-size": "18px", "--kk-dur": "2.4s", "--kk-del": "0.5s" } as React.CSSProperties}>✨</span>
-            <span className="kk-sparkle text-[#fbbf24]" style={{ bottom: "-8px", left: "30px", "--kk-size": "15px", "--kk-dur": "2.8s", "--kk-del": "1.6s" } as React.CSSProperties}>✨</span>
 
             <div className="desa-img-box">
               <span className="desa-img-badge">
-                <MapPin className="w-4 h-4 text-[#ffd700]" />
                 Lokasi 2
               </span>
               <Image
@@ -507,15 +629,14 @@ export default function ProfilDesa() {
             </div>
             <div className="desa-info-body">
               <h4 className="desa-title">
-                <CheckCircle2 className="w-6 h-6 text-[#38bdf8]" />
                 Desa Yayasan
               </h4>
               <p className="desa-desc">
                 Desa agraris dan maritim dengan keunggulan budidaya lokal, penguatan kelembagaan desa, pendampingan BUMDes, pembukuan digital UMKM, serta inovasi ketahanan pangan dan pengolahan hasil panen.
               </p>
               <div className="desa-highlights">
-                <span className="desa-pill"><Landmark className="w-3.5 h-3.5 text-[#7dd3fc]" /> Kemandirian BUMDes</span>
-                <span className="desa-pill"><Compass className="w-3.5 h-3.5 text-[#7dd3fc]" /> Agro-Bahari Lokal</span>
+                <span className="desa-pill">Kemandirian BUMDes</span>
+                <span className="desa-pill">Agro-Bahari Lokal</span>
               </div>
             </div>
           </div>
@@ -525,9 +646,7 @@ export default function ProfilDesa() {
         {/* Tombol Kecil Navigasi ke Tab Peta Interaktif */}
         <div className="profil-peta-btn-container">
           <Link href="/peta" className="profil-peta-mini-btn group">
-            <Compass className="w-4 h-4 text-[#38bdf8] group-hover:rotate-45 transition-transform duration-300" />
             <span>Buka Peta Interaktif Morotai</span>
-            <ArrowRight className="w-4 h-4 text-[#38bdf8] group-hover:translate-x-1.5 transition-transform duration-300" />
           </Link>
         </div>
 

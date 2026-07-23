@@ -1,71 +1,91 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
+import { createSanityClient, createImageHelpers } from "@arungimorotai/sanity";
 
-interface PartnerItem {
-  name: string;
-  category: "Mitra Utama" | "Sponsor & CSR" | "Media Partner" | "Pemerintah";
-  desc: string;
-  badgeColor: string;
+interface SanityMitra {
+  _id: string;
+  nama: string;
+  logo: any;
+  tipe: "sponsor" | "media_partner" | "mitra" | "institusi";
+  url?: string;
+  urutan?: number;
+  isCombined?: boolean;
+  items?: SanityMitra[];
 }
 
-const partnerData: PartnerItem[] = [
-  {
-    name: "Universitas Gadjah Mada (UGM)",
-    category: "Mitra Utama",
-    desc: "Direktorat Pengabdian kepada Masyarakat (DPkM) UGM sebagai institusi penaung program KKN-PPM.",
-    badgeColor: "#38bdf8",
-  },
-  {
-    name: "Pemerintah Kabupaten Pulau Morotai",
-    category: "Pemerintah",
-    desc: "Mitra strategis daerah dalam fasilitasi perizinan, koordinasi desa, serta integrasi rencana pembangunan daerah.",
-    badgeColor: "#60a5fa",
-  },
-  {
-    name: "Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi RI",
-    category: "Pemerintah",
-    desc: "Kolaborator nasional dalam penguatan tata kelola pemerintahan desa dan pengembangan BUMDes.",
-    badgeColor: "#7dd3fc",
-  },
-  {
-    name: "Bank BNI & Bank Mandiri (Program CSR)",
-    category: "Sponsor & CSR",
-    desc: "Dukungan pendanaan fasilitasi teknologi tepat guna, penerangan desa, dan digitalisasi UMKM pesisir.",
-    badgeColor: "#38bdf8",
-  },
-  {
-    name: "PT PLN (Persero) Wilayah Maluku & Maluku Utara",
-    category: "Sponsor & CSR",
-    desc: "Dukungan kelistrikan desa dan edukasi pemanfaatan energi ramah lingkungan bagi masyarakat pesisir.",
-    badgeColor: "#60a5fa",
-  },
-  {
-    name: "Kagama Maluku Utara & Kagama Morotai",
-    category: "Mitra Utama",
-    desc: "Jaringan alumni Keluarga Alumni Universitas Gadjah Mada yang memberikan pendampingan lokal dan logistik lapangan.",
-    badgeColor: "#7dd3fc",
-  },
-  {
-    name: "Malut Post & Morotai News",
-    category: "Media Partner",
-    desc: "Mitra publikasi media daerah dalam peliputan kegiatan pengabdian masyarakat dan promosi ekowisata desa.",
-    badgeColor: "#38bdf8",
-  },
-  {
-    name: "GNFI (Good News From Indonesia) & IDN Times",
-    category: "Media Partner",
-    desc: "Mitra media nasional penyuara kisah inspiratif pemuda mengabdi di beranda terdepan pasifik Nusantara.",
-    badgeColor: "#60a5fa",
-  },
-];
+interface SponsorMitraProps {
+  mitraData?: SanityMitra[];
+}
 
-export default function SponsorMitra() {
+const client = createSanityClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "2nwcacnk",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "tim",
+  useCdn: true,
+});
+const { urlFor } = createImageHelpers(client);
+
+// Fungsi untuk menentukan tingkat ukuran logo berdasarkan urutan di Sanity atau nama
+const getTierClass = (urutan: number | undefined, tipe: string, nama: string) => {
+  if (tipe === "media_partner") return "tier-media";
+
+  const n = nama.toLowerCase();
+  if (n.includes("eiger")) return "tier-1";
+  if (n.includes("oase")) return "tier-2";
+  if (n.includes("qris") || n.includes("bank indonesia") || n.includes("sig")) return "tier-3";
+  if (n.includes("bahela")) return "tier-5";
+
+  const u = urutan ?? 999;
+  if (u === 1) return "tier-1";
+  if (u === 2) return "tier-2";
+  return "tier-4"; // Semua sisa (Swayasa, Pupuk Kaltim, Pepsodent, Rexona) masuk tier-4
+};
+
+export default function SponsorMitra({ mitraData = [] }: SponsorMitraProps) {
+  // Pisahkan data dan urutkan berdasarkan 'urutan' dari Sanity
+  const supporters = useMemo(() => {
+    return mitraData
+      .filter((m) => m.tipe !== "media_partner")
+      .sort((a, b) => {
+        return (a.urutan ?? 999) - (b.urutan ?? 999);
+      });
+
+    // Group Rexona and Pepsodent
+    const rexona = base.find(s => s.nama.toLowerCase().includes("rexona"));
+    const pepsodent = base.find(s => s.nama.toLowerCase().includes("pepsodent"));
+
+    if (rexona && pepsodent) {
+      base = base.filter(s => s._id !== rexona._id && s._id !== pepsodent._id);
+      base.push({
+        _id: "combined-rexona-pepsodent",
+        tipe: "sponsor",
+        nama: "rexona pepsodent",
+        isCombined: true,
+        items: [rexona, pepsodent],
+        urutan: 999, // Force to bottom (Tier 4)
+      } as SanityMitra);
+      
+      // Re-sort in case the combined item needs to be ordered by urutan (it gets 999 so it defaults to end of tier-4)
+      base.sort((a, b) => {
+        return (a.urutan ?? 999) - (b.urutan ?? 999);
+      });
+    }
+
+    return base;
+  }, [mitraData]);
+
+  const mediaPartners = useMemo(() => {
+    return mitraData
+      .filter((m) => m.tipe === "media_partner")
+      .sort((a, b) => (a.urutan ?? 999) - (b.urutan ?? 999));
+  }, [mitraData]);
+
   return (
     <section id="sponsor-mitra" className="sponsor-section">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 
         .sponsor-section {
           position: relative;
@@ -75,10 +95,75 @@ export default function SponsorMitra() {
           overflow: hidden;
           z-index: 10;
           color: #ffffff;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        /* Background Vector Map */
+        .sponsor-section-bg-vector {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: url('/images/peta_vector.png');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          /* Removed background-attachment: fixed to prevent scroll lag */
+          transform: translateZ(0);
+          will-change: transform;
+          mix-blend-mode: soft-light;
+          opacity: 0.25;
+          filter: invert(1) contrast(1.4) brightness(1.15);
+          mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        /* Animasi Gelembung Renik Samudra */
+        .sponsor-bubbles-wrapper {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        .ocean-bubble {
+          position: absolute;
+          bottom: -40px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
+          border: 1px solid rgba(186, 230, 253, 0.65);
+          box-shadow: 
+            inset 0 0 3px rgba(255, 255, 255, 0.85),
+            0 0 6px rgba(56, 189, 248, 0.35);
+          animation: floatUp var(--bubble-dur) linear infinite;
+          animation-delay: var(--bubble-del);
+          left: var(--bubble-left);
+          width: var(--bubble-size);
+          height: var(--bubble-size);
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+
+        @keyframes floatUp {
+          0% {
+            transform: translate3d(0, 0, 0) scale(0.7);
+            opacity: 0;
+          }
+          15% {
+            opacity: 0.75;
+          }
+          85% {
+            opacity: 0.75;
+          }
+          100% {
+            transform: translate3d(0, -980px, 0) scale(1.1);
+            opacity: 0;
+          }
+        }
+
+
         .sponsor-container {
-          max-width: 1240px;
+          max-width: 1340px; /* Diperlebar agar kotak lebih leluasa */
           margin: 0 auto;
           position: relative;
           z-index: 2;
@@ -90,17 +175,28 @@ export default function SponsorMitra() {
         }
         .sponsor-badge {
           display: inline-block;
-          background: rgba(56, 189, 248, 0.18);
-          color: #38bdf8;
-          border: 1px solid rgba(56, 189, 248, 0.4);
-          padding: 0.45rem 1.3rem;
+          background: 
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 0, 0, 0.18) 3px,
+              rgba(0, 0, 0, 0.18) 6px
+            ),
+            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
+          color: #fce8c5;
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 0.55rem 1.45rem;
           border-radius: 9999px;
-          font-size: 0.88rem;
+          font-size: 0.86rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           margin-bottom: 1.25rem;
-          backdrop-filter: blur(8px);
+          box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.4),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
         }
         .sponsor-title {
           font-family: 'Playfair Display', serif;
@@ -123,51 +219,106 @@ export default function SponsorMitra() {
           line-height: 1.68;
         }
 
-        /* Partners Grid */
-        .sponsor-grid {
+        /* Two Boxes Layout */
+        .mitra-boxes-wrapper {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.6rem;
-          margin-bottom: 5rem;
-        }
-        .partner-card {
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 22px;
-          padding: 2rem 1.6rem;
-          backdrop-filter: blur(14px);
-          transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 1.2rem;
-        }
-        .partner-card:hover {
-          transform: translateY(-6px);
-          background: rgba(255, 255, 255, 0.12);
-          border-color: rgba(56, 189, 248, 0.5);
-          box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem; /* Jarak antar kotak kiri dan kanan */
+          margin-bottom: 6rem;
         }
 
-        .partner-category-tag {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          padding: 0.32rem 0.85rem;
-          border-radius: 9999px;
-          width: fit-content;
+        .mitra-box-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
         }
-        .partner-name {
-          font-size: 1.15rem;
+
+        .mitra-box-title {
+          font-size: 1.7rem;
           font-weight: 700;
           color: #ffffff;
-          line-height: 1.35;
+          letter-spacing: 0.02em;
         }
-        .partner-desc {
-          font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.8);
-          line-height: 1.58;
+
+        .mitra-box-inner {
+          background: #ffffff;
+          border-radius: 24px;
+          padding: 2.5rem 1.5rem;
+          width: 100%;
+          flex-grow: 1;
+          min-height: 350px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          align-content: center;
+          gap: 1.2rem 1rem; /* Gap diperkecil agar tidak ada yang terdorong ke baris baru */
+          box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 2px rgba(255, 255, 255, 0.8),
+            inset 0 5px 15px rgba(0,0,0,0.05);
+          position: relative;
+        }
+
+        .mitra-logo-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease;
+          flex: 0 0 auto;
+        }
+        
+        .mitra-logo-item:hover {
+          transform: scale(1.05);
+          z-index: 2;
+        }
+
+        /* Tier System for exact image matching */
+        .mitra-logo-item.tier-1 {
+          flex: 0 0 100%; /* Paksa Eigerindo mengambil 1 baris penuh sendiri */
+          width: 100%;
+        }
+        .mitra-logo-item.tier-1 .mitra-logo-img {
+          width: 400px;
+          height: 160px;
+        }
+
+        .mitra-logo-item.tier-2 {
+          flex: 0 0 100%; /* Paksa Oase mengambil 1 baris penuh sendiri */
+          width: 100%;
+        }
+        .mitra-logo-item.tier-2 .mitra-logo-img {
+          width: 180px;
+          height: 75px;
+        }
+
+        .mitra-logo-item.tier-3 .mitra-logo-img {
+          width: 135px;
+          height: 55px;
+        }
+
+        .mitra-logo-item.tier-4 .mitra-logo-img {
+          width: 100px;
+          height: 40px;
+        }
+
+        .mitra-logo-item.tier-5 {
+          /* Bahela berada sebaris dengan sponsor tier-4 di baris paling bawah */
+        }
+        .mitra-logo-item.tier-5 .mitra-logo-img {
+          width: 60px;
+          height: 25px;
+        }
+
+        .mitra-logo-item.tier-media .mitra-logo-img {
+          width: 150px;
+          height: 90px;
+        }
+
+        .mitra-logo-img {
+          object-fit: contain;
         }
 
         /* Call to Action Sponsorship */
@@ -231,23 +382,49 @@ export default function SponsorMitra() {
           height: 85px;
         }
 
-        @media (max-width: 1024px) {
-          .sponsor-grid {
-            grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 992px) {
+          .mitra-boxes-wrapper {
+            grid-template-columns: 1fr;
+            gap: 4rem;
           }
         }
         @media (max-width: 640px) {
           .sponsor-section {
             padding: 4.5rem 1rem 6.5rem 1rem;
           }
-          .sponsor-grid {
-            grid-template-columns: 1fr;
-          }
           .sponsor-cta-box {
             padding: 2.5rem 1.5rem;
           }
+          .mitra-box-inner {
+            padding: 1.5rem;
+            min-height: 200px;
+          }
         }
       `}</style>
+
+      {/* Background Vector Map */}
+      <div className="sponsor-section-bg-vector" />
+
+      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
+      <div className="sponsor-bubbles-wrapper">
+        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
+        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
+      </div>
 
       <div className="sponsor-container">
         {/* Header */}
@@ -256,50 +433,122 @@ export default function SponsorMitra() {
           <h2 className="sponsor-title">
             Mitra Kolaborator & <em>Sponsor Kami</em>
           </h2>
-          <p className="sponsor-subtitle">
-            Dukungan berharga dari institusi pendidikan, pemerintahan, dunia usaha, serta media partner dalam mewujudkan program KKN-PPM UGM Arungi Morotai 2026.
-          </p>
+
         </div>
 
-        {/* Grid */}
-        <div className="sponsor-grid">
-          {partnerData.map((item, idx) => (
-            <div key={idx} className="partner-card">
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <span
-                  className="partner-category-tag"
-                  style={{
-                    background: `${item.badgeColor}25`,
-                    color: item.badgeColor,
-                    border: `1px solid ${item.badgeColor}50`,
-                  }}
-                >
-                  {item.category}
-                </span>
-                <h3 className="partner-name">{item.name}</h3>
-              </div>
-              <p className="partner-desc">{item.desc}</p>
+        {/* Two Boxes for Logos */}
+        <div className="mitra-boxes-wrapper">
+          {/* Box 1: Supporters */}
+          <div className="mitra-box-col">
+            <h3 className="mitra-box-title">Didukung Oleh:</h3>
+            <div className="mitra-box-inner">
+              {supporters.length > 0 ? (
+                supporters.map((item, index) => {
+                  const currentTier = getTierClass(item.urutan, item.tipe, item.nama);
+                  const prevItem = index > 0 ? supporters[index - 1] : null;
+                  const prevTier = prevItem ? getTierClass(prevItem.urutan, prevItem.tipe, prevItem.nama) : null;
+
+                  // Force a line break after tier-3 so tier-4 starts on a new line
+                  const shouldBreak = prevTier === "tier-3" && (currentTier === "tier-4" || currentTier === "tier-5");
+
+                  if (item.isCombined && item.items) {
+                    return (
+                      <React.Fragment key={item._id}>
+                        {shouldBreak && <div style={{ flexBasis: "100%", height: 0 }} />}
+                        <div className={`mitra-logo-item ${currentTier}`} style={{ flexDirection: "column", gap: "0.8rem" }}>
+                          {item.items.map((subItem) => (
+                            <a
+                              key={subItem._id}
+                              href={subItem.url || "#"}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={subItem.nama}
+                              style={{ cursor: subItem.url ? "pointer" : "default", pointerEvents: subItem.url ? "auto" : "none", display: "block" }}
+                            >
+                              <Image
+                                src={urlFor(subItem.logo).url()}
+                                alt={subItem.nama}
+                                width={300}
+                                height={150}
+                                className="mitra-logo-img"
+                                unoptimized
+                              />
+                            </a>
+                          ))}
+                        </div>
+                      </React.Fragment>
+                    );
+                  }
+
+                  return (
+                    <React.Fragment key={item._id}>
+                      {shouldBreak && <div style={{ flexBasis: "100%", height: 0 }} />}
+                      <a
+                        href={item.url || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`mitra-logo-item ${currentTier}`}
+                        title={item.nama}
+                        style={{ cursor: item.url ? "pointer" : "default", pointerEvents: item.url ? "auto" : "none" }}
+                      >
+                        <Image
+                          src={urlFor(item.logo).url()}
+                          alt={item.nama}
+                          width={500}
+                          height={250}
+                          className="mitra-logo-img"
+                          unoptimized
+                        />
+                      </a>
+                    </React.Fragment>
+                  );
+                })
+              ) : (
+                <p style={{ color: "#94a3b8" }}>Belum ada data mitra.</p>
+              )}
             </div>
-          ))}
+          </div>
+
+          {/* Box 2: Media Partners */}
+          <div className="mitra-box-col">
+            <h3 className="mitra-box-title">Dipublikasikan Oleh:</h3>
+            <div className="mitra-box-inner media-partner-box">
+              {mediaPartners.length > 0 ? (
+                mediaPartners.map((item) => (
+                  <a
+                    key={item._id}
+                    href={item.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mitra-logo-item ${getTierClass(item.urutan, item.tipe, item.nama)}`}
+                    title={item.nama}
+                    style={{ cursor: item.url ? "pointer" : "default", pointerEvents: item.url ? "auto" : "none" }}
+                  >
+                    <Image
+                      src={urlFor(item.logo).url()}
+                      alt={item.nama}
+                      width={300}
+                      height={150}
+                      className="mitra-logo-img"
+                      unoptimized
+                    />
+                  </a>
+                ))
+              ) : (
+                <p style={{ color: "#94a3b8" }}>Belum ada data media partner.</p>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="sponsor-cta-box">
-          <h3 className="sponsor-cta-title">Tertarik Bermitra & Berkolaborasi?</h3>
-          <p className="sponsor-cta-desc">
-            Kami membuka peluang kerja sama seluas-luasnya bagi perusahaan, lembaga, maupun komunitas yang ingin turut berkontribusi nyata dalam pembangunan masyarakat di Pulau Morotai.
-          </p>
-          <a href="#kontak" className="sponsor-btn">
-            Hubungi Tim Kemitraan Kami 🤝
-          </a>
-        </div>
+
       </div>
 
       {/* Wave Curve transitioning smoothly to KontakFooter (#031428) */}
       <div className="sponsor-wave-divider">
         <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
-          <path 
-            d="M0,50 C360,110 1080,20 1440,60 L1440,120 L0,120 Z" 
+          <path
+            d="M0,50 C360,110 1080,20 1440,60 L1440,120 L0,120 Z"
             fill="#031428"
           />
         </svg>

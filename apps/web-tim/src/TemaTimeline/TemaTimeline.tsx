@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Waves, Radio, Landmark, Compass, Anchor } from "lucide-react";
+
 
 export default function TemaTimeline() {
   return (
@@ -44,11 +44,12 @@ export default function TemaTimeline() {
           width: var(--bubble-size);
           height: var(--bubble-size);
           opacity: 0;
+          will-change: transform, opacity;
         }
 
         @keyframes floatUp {
           0% {
-            transform: translateY(0) scale(0.7);
+            transform: translate3d(0, 0, 0) scale(0.7);
             opacity: 0;
           }
           15% {
@@ -58,7 +59,7 @@ export default function TemaTimeline() {
             opacity: 0.75;
           }
           100% {
-            transform: translateY(-980px) scale(1.1);
+            transform: translate3d(0, -980px, 0) scale(1.1);
             opacity: 0;
           }
         }
@@ -219,36 +220,6 @@ export default function TemaTimeline() {
           transform: scale(1.06);
         }
 
-        /* Caption overlay inside photo with Teak Wood accent strip */
-        .photo-hero-caption {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: linear-gradient(0deg, rgba(10, 24, 40, 0.96) 0%, rgba(10, 24, 40, 0.78) 65%, transparent 100%);
-          padding: 2.5rem 2.2rem 1.7rem 2.2rem;
-          z-index: 3;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-top: 1px solid rgba(230, 184, 106, 0.35);
-        }
-        .caption-text {
-          font-size: 1.12rem;
-          font-weight: 700;
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          gap: 0.65rem;
-        }
-        .caption-subtext {
-          font-size: 0.85rem;
-          color: #ffd700;
-          font-weight: 800;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-        }
-
         /* Wave Curve transitioning to ProfilDesa (#07284b) */
         .tt-wave-divider {
           position: absolute;
@@ -286,9 +257,32 @@ export default function TemaTimeline() {
             padding: 1.8rem 1.4rem 1.2rem 1.4rem;
           }
         }
+
+        /* Background Vector Map bercampur dengan gradasi biru pekat */
+        .tema-section-bg-vector {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: url('/images/peta_vector.png');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          /* Removed background-attachment: fixed to prevent scroll lag */
+          transform: translateZ(0);
+          will-change: transform;
+          mix-blend-mode: soft-light;
+          opacity: 0.25;
+          filter: invert(1) contrast(1.4) brightness(1.15);
+          mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
       `}</style>
 
-      {/* Gelembung-Gelembung Renik Udara Laut Pasifik (Delicate Micro Ocean Bubbles: 6px - 18px) */}
+      {/* Background Vector Map */}
+      <div className="tema-section-bg-vector" />
+
+      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
       <div className="tt-bubbles-wrapper">
         <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
         <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
@@ -310,14 +304,17 @@ export default function TemaTimeline() {
       </div>
 
       <div className="tt-main-container">
+        {/* Plakat Kayu Badge Diletakkan di Tengah Atas */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "3.5rem" }}>
+          <span className="wood-plaque-badge">
+            Tema KKN Arungi Morotai 2026
+          </span>
+        </div>
+
         {/* 2-Column Editorial Layout: Left Theme Only | Right Clean High-Res Photo Only */}
         <div className="tt-hero-showcase">
           {/* Left Column: Hanya Tema */}
           <div className="tt-hero-left">
-            <span className="wood-plaque-badge">
-              <Compass className="w-4 h-4 text-[#ffd700]" />
-              Tema KKN Arungi Morotai 2026
-            </span>
             <h2 className="tt-hero-title">
               Akselerasi Ekowisata<br />
               Berbasis Kearifan<br />
@@ -326,25 +323,6 @@ export default function TemaTimeline() {
             <p className="tt-hero-desc">
               Sinergi infrastruktur adaptif vernakular untuk menghubungkan nilai rantai Agro-Bahari di Desa Kolorai & Desa Yayasan, demi menciptakan masa depan Pulau Morotai yang berdaya saing dan berkelanjutan.
             </p>
-            <p className="tt-hero-desc-2">
-              Integrasi ilmu pengetahuan multidisiplin yang berpijak pada kebutuhan nyata masyarakat maritim di beranda terdepan pasifik Nusantara.
-            </p>
-
-            {/* Teak Wood & Copper Info Pills */}
-            <div className="tt-inline-pills">
-              <div className="wood-info-pill">
-                <Waves className="w-5 h-5 copper-vector-icon" />
-                <span>Ekowisata & Agro-Bahari</span>
-              </div>
-              <div className="wood-info-pill">
-                <Radio className="w-5 h-5 copper-vector-icon" />
-                <span>Digitalisasi Spasial GIS</span>
-              </div>
-              <div className="wood-info-pill">
-                <Landmark className="w-5 h-5 copper-vector-icon" />
-                <span>Kemandirian BUMDes</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Hanya Gambar (Real Photography Showcase) */}
@@ -357,13 +335,6 @@ export default function TemaTimeline() {
                 priority
                 style={{ objectFit: "cover" }}
               />
-              <div className="photo-hero-caption">
-                <span className="caption-text">
-                  <Anchor className="w-4 h-4 text-[#ffd700]" />
-                  Pasir Timbul Dodola, Pulau Morotai
-                </span>
-                <span className="caption-subtext">Destinasi Bahari Unggulan</span>
-              </div>
             </div>
           </div>
         </div>
