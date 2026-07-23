@@ -42,7 +42,7 @@ const getTierClass = (urutan: number | undefined, tipe: string, nama: string) =>
   return "tier-4"; // Semua sisa (Swayasa, Pupuk Kaltim, Pepsodent, Rexona) masuk tier-4
 };
 
-export default function SponsorMitra({ mitraData = [] }: SponsorMitraProps) {
+export default function SponsorMitra({ mitraData = [], petaVectorUrl = "/images/peta_vector.png" }: SponsorMitraProps) {
   // Pisahkan data dan urutkan berdasarkan 'urutan' dari Sanity
   const supporters = useMemo(() => {
     return mitraData
@@ -104,7 +104,7 @@ export default function SponsorMitra({ mitraData = [] }: SponsorMitraProps) {
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;

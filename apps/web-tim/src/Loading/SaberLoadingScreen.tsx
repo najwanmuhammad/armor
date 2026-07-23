@@ -6,9 +6,16 @@ import Image from "next/image";
 interface SaberLoadingScreenProps {
   message?: string;
   subMessage?: string;
+  logoPutihUrl?: string;
+  logoKilauUrl?: string;
 }
 
-export default function SaberLoadingScreen({}: SaberLoadingScreenProps) {
+export default function SaberLoadingScreen({
+  message = "MENGARUNGI MOROTAI",
+  subMessage = "Memuat data & peta interaktif...",
+  logoPutihUrl = "/Logo Putih.png",
+  logoKilauUrl = "/Logo Putih.png",
+}: SaberLoadingScreenProps) {
   return (
     <div className="saber-loading-overlay">
       <style>{`
@@ -112,7 +119,7 @@ export default function SaberLoadingScreen({}: SaberLoadingScreenProps) {
           {/* Layer 1: Pulsing Plasma Aura behind logo (`kelap-kelip`) */}
           <div className="saber-logo-layer layer-plasma">
             <Image
-              src="/Logo Putih.png"
+              src={logoKilauUrl}
               alt="Logo Aura Plasma"
               width={185}
               height={185}
@@ -124,7 +131,7 @@ export default function SaberLoadingScreen({}: SaberLoadingScreenProps) {
           {/* Layer 2: Core White Logo */}
           <div className="saber-logo-layer layer-base">
             <Image
-              src="/Logo Putih.png"
+              src={logoPutihUrl}
               alt="Logo Arungi Morotai Putih"
               width={185}
               height={185}
@@ -137,7 +144,7 @@ export default function SaberLoadingScreen({}: SaberLoadingScreenProps) {
           {/* Layer 3: Laser Shimmer sweep across the letterforms (`kelap-kelip`) */}
           <div className="saber-logo-layer layer-laser-shimmer">
             <Image
-              src="/Logo Putih.png"
+              src={logoPutihUrl}
               alt="Logo Saber Shimmer"
               width={185}
               height={185}

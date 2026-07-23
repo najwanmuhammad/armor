@@ -88,7 +88,11 @@ const programsData: ProgramCard[] = [
   },
 ];
 
-export default function ProgramKerja() {
+interface ProgramKerjaProps {
+  petaVectorUrl?: string;
+}
+
+export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png" }: ProgramKerjaProps) {
   const [activeKlaster, setActiveKlaster] = useState<string>("Semua");
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -126,13 +130,13 @@ export default function ProgramKerja() {
           color: #ffffff;
         }
 
-        /* Background Vector Map bercampur dengan gradasi biru pekat */
+        /* Background Vector Map */
         .proker-section-bg-vector {
           position: absolute;
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;

@@ -7,7 +7,7 @@ import ProfilDesa from "@/src/ProfilDesa/ProfilDesa";
 import ProgramKerja from "@/src/ProgramKerja/ProgramKerja";
 import SponsorMitra from "@/src/SponsorMitra/SponsorMitra";
 import KontakFooter from "@/src/Kontak/KontakFooter";
-import { createSanityClient, getAnggota, getMitra } from "@arungimorotai/sanity";
+import { createSanityClient, getAnggota, getMitra, getPengaturanSitus } from "@arungimorotai/sanity";
 
 export const revalidate = 0; // Auto fetch terbaru setiap refresh halaman
 
@@ -18,21 +18,43 @@ export default async function Home() {
     useCdn: false, // Set false agar data live dari Sanity Studio langsung ter-update saat direfresh!
   });
 
-  const [rawMembers, rawMitra] = await Promise.all([
+  const [rawMembers, rawMitra, rawSettings] = await Promise.all([
     getAnggota(client).catch(() => []),
-    getMitra(client).catch(() => [])
+    getMitra(client).catch(() => []),
+    getPengaturanSitus(client).catch(() => []),
   ]);
+
+  // Find the video background from settings
+  const backgroundVideoAsset = rawSettings?.find(
+    (asset: any) => asset.type === "video" && asset.title?.trim().toLowerCase() === "background beranda"
+  );
+  const heroVideoUrl = backgroundVideoAsset?.fileUrl || "/Video Project 4.mp4";
+
+  // Find logos
+  const findLogoUrl = (title: string, defaultPath: string) => {
+    const asset = rawSettings?.find(
+      (a: any) => a.type === "image" && a.title?.trim().toLowerCase() === title.toLowerCase()
+    );
+    return asset?.fileUrl || defaultPath;
+  };
+
+  const logoPutihUrl = findLogoUrl("putih", "/Logo Putih.png");
+  const logoHitamUrl = findLogoUrl("hitam", "/Logo Hitam.png");
+  // Assuming 'logo armor' is used instead of Logo Putih in Hero
+  const logoArmorUrl = findLogoUrl("logo armor", logoPutihUrl);
+  const petaVectorUrl = findLogoUrl("peta_vector", "/images/peta_vector.png");
+  const pasirTimbulUrl = findLogoUrl("pasir timbul", "/images/pasir_timbul.jpg");
 
   return (
     <>
-      <Header />
-      <Hero />
-      <TentangKami />
-      <TimProfile sanityMembers={rawMembers} />
-      <TemaTimeline />
-      <ProfilDesa />
-      <ProgramKerja />
-      <SponsorMitra mitraData={rawMitra} />
+      <Header logoPutihUrl={logoPutihUrl} logoHitamUrl={logoHitamUrl} />
+      <Hero videoUrl={heroVideoUrl} logoUrl={logoArmorUrl} />
+      <TentangKami petaVectorUrl={petaVectorUrl} />
+      <TimProfile sanityMembers={rawMembers} petaVectorUrl={petaVectorUrl} />
+      <TemaTimeline petaVectorUrl={petaVectorUrl} pasirTimbulUrl={pasirTimbulUrl} />
+      <ProfilDesa petaVectorUrl={petaVectorUrl} />
+      <ProgramKerja petaVectorUrl={petaVectorUrl} />
+      <SponsorMitra mitraData={rawMitra} petaVectorUrl={petaVectorUrl} />
       <KontakFooter />
     </>
   );

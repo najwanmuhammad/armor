@@ -6,8 +6,12 @@ import SaberLoadingScreen from "./SaberLoadingScreen";
 
 export default function SaberLoadingProvider({
   children,
+  logoPutihUrl,
+  logoKilauUrl,
 }: {
   children: React.ReactNode;
+  logoPutihUrl?: string;
+  logoKilauUrl?: string;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -82,7 +86,7 @@ export default function SaberLoadingProvider({
     <>
       {isLoading && (
         <div key={`saber-fixed-overlay-${loadingMsg}`} style={{ animation: "fadeIn 0.3s ease forwards", zIndex: 999999, position: "relative" }}>
-          <SaberLoadingScreen key={`saber-pure-shimmer-logo-${loadingMsg}`} message={loadingMsg} subMessage={loadingSub} />
+          <SaberLoadingScreen key={`saber-pure-shimmer-logo-${loadingMsg}`} message={loadingMsg} subMessage={loadingSub} logoPutihUrl={logoPutihUrl} logoKilauUrl={logoKilauUrl} />
         </div>
       )}
       {children}

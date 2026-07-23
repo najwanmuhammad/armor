@@ -6,6 +6,11 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import SaberLoadingScreen from "@/src/Loading/SaberLoadingScreen";
+import ProfilDesaCard from "./ProfilDesaCard";
+
+interface ProfilDesaProps {
+  petaVectorUrl?: string;
+}
 
 const ProfilBannerMap = dynamic(() => import("./ProfilBannerMap"), {
   ssr: false,
@@ -14,7 +19,7 @@ const ProfilBannerMap = dynamic(() => import("./ProfilBannerMap"), {
   ),
 });
 
-export default function ProfilDesa() {
+export default function ProfilDesa({ petaVectorUrl = "/images/peta_vector.png" }: ProfilDesaProps) {
   return (
     <section id="lokasi" className="profil-section">
       <style>{`
@@ -469,7 +474,7 @@ export default function ProfilDesa() {
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;

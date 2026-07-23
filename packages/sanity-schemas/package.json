@@ -8,6 +8,7 @@
     "./tim/programKerja": "./src/tim/programKerja.ts",
     "./tim/dokumentasi": "./src/tim/dokumentasi.ts",
     "./tim/mitra": "./src/tim/mitra.ts",
+    "./tim/pengaturanSitus": "./src/tim/pengaturanSitus.ts",
     "./desa/desa": "./src/desa/desa.ts",
     "./desa/berita": "./src/desa/berita.ts",
     "./desa/wisata": "./src/desa/wisata.ts",

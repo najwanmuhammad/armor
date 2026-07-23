@@ -72,3 +72,13 @@ export const mitraQuery = groq`
   urutan
 }
 `;
+
+export const pengaturanSitusQuery = groq`
+*[
+  _type == "pengaturanSitus"
+] {
+  title,
+  type,
+  "fileUrl": file.asset->url
+}
+`;

@@ -12,7 +12,26 @@ const InteractiveMap = dynamic(() => import("./components/map/Map/InteractiveMap
     ),
 });
 
-export default function Peta() {
+export default function Peta({ pasirTimbulUrl }: { pasirTimbulUrl?: string }) {
+    // If we have a custom URL from Sanity for Pasir Timbul, we update the static data dynamically
+    if (pasirTimbulUrl) {
+        morotaiDestinations.forEach(dest => {
+            if (dest.title.toLowerCase().includes("pasir timbul") || dest.title.toLowerCase().includes("dodola")) {
+                if (dest.heroImage === "/images/pasir_timbul.jpg") dest.heroImage = pasirTimbulUrl;
+                if (dest.gallery) {
+                    dest.gallery = dest.gallery.map(img => img === "/images/pasir_timbul.jpg" ? pasirTimbulUrl : img);
+                }
+            }
+        });
+        
+        morotaiIslandTarget.destinations.forEach(dest => {
+            if (dest.photo === "/images/pasir_timbul.jpg") dest.photo = pasirTimbulUrl;
+            if (dest.gallery) {
+                dest.gallery = dest.gallery.map(img => img === "/images/pasir_timbul.jpg" ? pasirTimbulUrl : img);
+            }
+        });
+    }
+
     return (
         <main className="page-shell page-shell--map-only">
             <InteractiveMap

@@ -15,7 +15,12 @@ const navLinks = [
   { label: "Dokumentasi", href: "/dokumentasi" },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  logoPutihUrl?: string;
+  logoHitamUrl?: string;
+}
+
+export default function Header({ logoPutihUrl = "/Logo Putih.png", logoHitamUrl = "/Logo Hitam.png" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -223,7 +228,7 @@ export default function Header() {
           <Link href="/" className="header-logo">
             {/* Logo Putih saat di atas (belum scroll) */}
             <Image
-              src="/Logo Putih.png"
+              src={logoPutihUrl}
               alt="Arungi Morotai"
               width={180}
               height={46}
@@ -233,7 +238,7 @@ export default function Header() {
             />
             {/* Logo Hitam saat sudah di scroll (background putih) */}
             <Image
-              src="/Logo Hitam.png"
+              src={logoHitamUrl}
               alt="Arungi Morotai"
               width={180}
               height={46}

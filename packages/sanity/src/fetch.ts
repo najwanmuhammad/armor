@@ -1,6 +1,6 @@
 import type { SanityClient } from "next-sanity";
 
-import { beritaQuery, wisataQuery, desaQuery, anggotaQuery, mitraQuery } from "./queries";
+import { beritaQuery, wisataQuery, desaQuery, anggotaQuery, mitraQuery, pengaturanSitusQuery } from "./queries";
 
 export async function getBerita(client: SanityClient, slug: string) {
   return client.fetch(beritaQuery, { slug });
@@ -20,4 +20,8 @@ export async function getAnggota(client: SanityClient) {
 
 export async function getMitra(client: SanityClient) {
   return client.fetch(mitraQuery, {}, { cache: "no-store", next: { revalidate: 0 } });
+}
+
+export async function getPengaturanSitus(client: SanityClient) {
+  return client.fetch(pengaturanSitusQuery, {}, { cache: "no-store", next: { revalidate: 0 } });
 }

@@ -3,7 +3,13 @@
 import React from "react";
 import Image from "next/image";
 
-export default function Hero() {
+interface HeroProps {
+  videoUrl?: string;
+  logoUrl?: string;
+}
+
+export default function Hero({ videoUrl = "/Video Project 4.mp4", logoUrl = "/Logo Putih.png" }: HeroProps) {
+  console.log("Hero rendering with videoUrl:", videoUrl);
   return (
     <section id="beranda" className="hero-section">
       <style>{`
@@ -82,6 +88,7 @@ export default function Hero() {
 
       {/* Background Video */}
       <video
+        key={videoUrl}
         autoPlay
         muted
         loop
@@ -96,13 +103,13 @@ export default function Hero() {
           zIndex: 0,
         }}
       >
-        <source src="/Video Project 4.mp4" type="video/mp4" />
+        <source src={videoUrl} type="video/mp4" />
       </video>
       <div className="hero-overlay" />
 
       <div className="hero-content">
         <Image
-          src="/Logo Putih.png"
+          src={logoUrl}
           alt="Arungi Morotai"
           width={550}
           height={200}

@@ -8,6 +8,7 @@ import {anggota} from '@arungimorotai/sanity-schemas/tim/anggota'
 import {programKerja} from '@arungimorotai/sanity-schemas/tim/programKerja'
 import {dokumentasi} from '@arungimorotai/sanity-schemas/tim/dokumentasi'
 import {mitra} from '@arungimorotai/sanity-schemas/tim/mitra'
+import {pengaturanSitus} from '@arungimorotai/sanity-schemas/tim/pengaturanSitus'
 
 // Schema desa
 import {desa} from '@arungimorotai/sanity-schemas/desa/desa'
@@ -46,7 +47,7 @@ export default defineConfig([
     dataset: datasetTim,
     basePath: '/tim',
     plugins: [structureTool(), visionTool(), media()],
-    schema: {types: [anggota, programKerja, dokumentasi, mitra]},
+    schema: {types: [anggota, programKerja, dokumentasi, mitra, pengaturanSitus]},
   },
   {
     name: 'desa',

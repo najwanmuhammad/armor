@@ -3,8 +3,12 @@
 import React from "react";
 import Image from "next/image";
 
+interface TemaTimelineProps {
+  petaVectorUrl?: string;
+  pasirTimbulUrl?: string;
+}
 
-export default function TemaTimeline() {
+export default function TemaTimeline({ petaVectorUrl = "/images/peta_vector.png", pasirTimbulUrl = "/images/pasir_timbul.jpg" }: TemaTimelineProps) {
   return (
     <section id="tema" className="tematimeline-section">
       <style>{`
@@ -264,7 +268,7 @@ export default function TemaTimeline() {
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
@@ -329,7 +333,7 @@ export default function TemaTimeline() {
           <div className="tt-photo-showcase">
             <div className="photo-hero-frame">
               <Image
-                src="/images/pasir_timbul.jpg"
+                src={pasirTimbulUrl}
                 alt="Keindahan Ekowisata Pasir Timbul Dodola, Pulau Morotai"
                 fill
                 priority

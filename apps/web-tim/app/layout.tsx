@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import SaberLoadingProvider from "@/src/Loading/SaberLoadingProvider";
+import { createSanityClient, getPengaturanSitus } from "@arungimorotai/sanity";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,17 +56,35 @@ export const metadata: Metadata = {
   description: "Portal web resmi tim KKN-PPM UGM Arungi Morotai - Mengarungi cerita, inovasi digital, penguatan desa, dan konservasi alam di Pulau Morotai.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const client = createSanityClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "2nwcacnk",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "tim",
+    useCdn: false,
+  });
+
+  const rawSettings = await getPengaturanSitus(client).catch(() => []);
+
+  // Find logos
+  const findLogoUrl = (title: string, defaultPath: string) => {
+    const asset = rawSettings?.find(
+      (a: any) => a.type === "image" && a.title?.trim().toLowerCase() === title.toLowerCase()
+    );
+    return asset?.fileUrl || defaultPath;
+  };
+
+  const logoPutih = findLogoUrl("putih", "/Logo Putih.png");
+  const logoKilauCita = findLogoUrl("kilau cita", "/Logo Putih.png");
   return (
     <html lang="en">
       <body
         className={`${madeTommy.variable} ${madeTommy.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SaberLoadingProvider>
+        <SaberLoadingProvider logoPutihUrl={logoPutih} logoKilauUrl={logoKilauCita}>
           {children}
         </SaberLoadingProvider>
       </body>

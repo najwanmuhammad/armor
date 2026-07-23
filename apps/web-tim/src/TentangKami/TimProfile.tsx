@@ -426,7 +426,7 @@ const divisionList: DivisionCard[] = [
   },
 ];
 
-export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] }) {
+export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/images/peta_vector.png" }: { sanityMembers?: any[], petaVectorUrl?: string }) {
   const [activeKlaster, setActiveKlaster] = useState<string | null>(null);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
@@ -584,7 +584,7 @@ export default function TimProfile({ sanityMembers }: { sanityMembers?: any[] })
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;

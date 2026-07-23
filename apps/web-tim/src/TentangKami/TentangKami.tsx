@@ -3,7 +3,11 @@
 import React from "react";
 import Image from "next/image";
 
-export default function TentangKami() {
+interface TentangKamiProps {
+  petaVectorUrl?: string;
+}
+
+export default function TentangKami({ petaVectorUrl = "/images/peta_vector.png" }: TentangKamiProps) {
   return (
     <section id="tentang-kami" className="tentang-section">
       <style>{`
@@ -268,7 +272,7 @@ export default function TentangKami() {
           inset: 0;
           z-index: 1;
           pointer-events: none;
-          background-image: url('/images/peta_vector.png');
+          background-image: url('${petaVectorUrl}');
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
