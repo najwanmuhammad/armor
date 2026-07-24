@@ -74,6 +74,24 @@ export const desa = defineType({
         { name: 'jumlahPerempuan', title: 'Perempuan (jiwa)', type: 'number' },
         { name: 'luasWilayah', title: 'Luas Wilayah', type: 'string', description: 'Contoh: 12,5 km²' },
         { name: 'jumlahDusun', title: 'Jumlah Dusun', type: 'number' },
+        {
+          name: 'pekerjaan',
+          title: 'Penduduk Berdasarkan Pekerjaan',
+          type: 'array',
+          description: 'Rincian jumlah penduduk per jenis pekerjaan (untuk grafik di beranda)',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'label', title: 'Jenis Pekerjaan', type: 'string' },
+                { name: 'jumlah', title: 'Jumlah (jiwa)', type: 'number' },
+              ],
+              preview: {
+                select: { title: 'label', subtitle: 'jumlah' },
+              },
+            },
+          ],
+        },
       ],
     }),
     defineField({

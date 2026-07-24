@@ -31,7 +31,7 @@ export default function NotFound() {
         style={{
           fontFamily: "var(--font-display)",
           fontSize: "1.75rem",
-          color: "var(--color-forest)",
+          color: "var(--color-night)",
           marginBottom: "0.75rem",
         }}
       >
@@ -45,7 +45,7 @@ export default function NotFound() {
         style={{
           padding: "0.75rem 1.75rem",
           borderRadius: "8px",
-          backgroundColor: "var(--color-laut)",
+          backgroundColor: "var(--color-blue)",
           color: "#fff",
           textDecoration: "none",
           fontWeight: 600,
