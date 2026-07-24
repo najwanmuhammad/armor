@@ -25,48 +25,7 @@ export default function TemaTimeline({ petaVectorUrl = "/images/peta_vector.png"
           color: #ffffff;
         }
 
-        /* Animasi Gelembung Renik Samudra (Delicate Micro Ocean Bubbles) */
-        .tt-bubbles-wrapper {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          pointer-events: none;
-          overflow: hidden;
-        }
-        .ocean-bubble {
-          position: absolute;
-          bottom: -40px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
-          border: 1px solid rgba(186, 230, 253, 0.65);
-          box-shadow: 
-            inset 0 0 3px rgba(255, 255, 255, 0.85),
-            0 0 6px rgba(56, 189, 248, 0.35);
-          animation: floatUp var(--bubble-dur) linear infinite;
-          animation-delay: var(--bubble-del);
-          left: var(--bubble-left);
-          width: var(--bubble-size);
-          height: var(--bubble-size);
-          opacity: 0;
-          will-change: transform, opacity;
-        }
 
-        @keyframes floatUp {
-          0% {
-            transform: translate3d(0, 0, 0) scale(0.7);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.75;
-          }
-          85% {
-            opacity: 0.75;
-          }
-          100% {
-            transform: translate3d(0, -980px, 0) scale(1.1);
-            opacity: 0;
-          }
-        }
 
         .tt-main-container {
           position: relative;
@@ -208,16 +167,23 @@ export default function TemaTimeline({ petaVectorUrl = "/images/peta_vector.png"
           box-shadow: 
             0 28px 70px rgba(0, 0, 0, 0.65),
             inset 0 2px 4px rgba(255, 255, 255, 0.35);
-          border: 2px solid rgba(230, 184, 106, 0.45);
+          border: 1px solid rgba(255, 255, 255, 0.15);
           background: #092642;
           transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+        }
+        .photo-hero-frame:focus, .photo-hero-frame:active {
+          outline: none !important;
         }
         .photo-hero-frame:hover {
           transform: translateY(-6px);
-          border-color: #ffd700;
+          border-color: rgba(255, 255, 255, 0.3);
           box-shadow: 0 34px 85px rgba(0, 0, 0, 0.8);
         }
         .photo-hero-frame img {
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent !important;
           transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         .photo-hero-frame:hover img {
@@ -275,9 +241,7 @@ export default function TemaTimeline({ petaVectorUrl = "/images/peta_vector.png"
           /* Removed background-attachment: fixed to prevent scroll lag */
           transform: translateZ(0);
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.25;
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
@@ -286,26 +250,7 @@ export default function TemaTimeline({ petaVectorUrl = "/images/peta_vector.png"
       {/* Background Vector Map */}
       <div className="tema-section-bg-vector" />
 
-      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
-      <div className="tt-bubbles-wrapper">
-        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
-      </div>
+      {/* Gelembung-Gelembung dihapus */}
 
       <div className="tt-main-container">
         {/* Plakat Kayu Badge Diletakkan di Tengah Atas */}

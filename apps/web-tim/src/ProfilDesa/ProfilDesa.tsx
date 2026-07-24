@@ -201,64 +201,32 @@ export default function ProfilDesa({ petaVectorUrl = "/images/peta_vector.png" }
           transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
           display: flex;
           flex-direction: column;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+        }
+        .desa-card:focus, .desa-card:active {
+          outline: none !important;
         }
         .desa-card:hover {
           transform: translateY(-8px);
+          border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Efek Kelap Kelip Glow Cyan untuk Desa Kolorai */
+        /* Efek Glow Cyan Static untuk Desa Kolorai */
         .desa-card--kolorai {
-          border: 2px solid rgba(56, 189, 248, 0.85);
           box-shadow: 
-            0 0 28px rgba(56, 189, 248, 0.55),
-            0 0 60px rgba(16, 185, 129, 0.3),
-            inset 0 0 18px rgba(56, 189, 248, 0.25);
-          animation: pulseGlowCyan 2.8s infinite ease-in-out;
-        }
-        @keyframes pulseGlowCyan {
-          0%, 100% {
-            box-shadow: 
-              0 0 22px rgba(56, 189, 248, 0.48),
-              0 0 48px rgba(16, 185, 129, 0.26),
-              inset 0 0 14px rgba(56, 189, 248, 0.22);
-            border-color: rgba(56, 189, 248, 0.8);
-          }
-          50% {
-            box-shadow: 
-              0 0 42px rgba(56, 189, 248, 0.95),
-              0 0 82px rgba(56, 189, 248, 0.62),
-              0 0 115px rgba(16, 185, 129, 0.42),
-              inset 0 0 25px rgba(56, 189, 248, 0.4);
-            border-color: rgba(186, 230, 253, 1);
-          }
+            0 0 28px rgba(56, 189, 248, 0.15),
+            0 0 60px rgba(16, 185, 129, 0.1),
+            inset 0 0 18px rgba(56, 189, 248, 0.1);
         }
 
-        /* Efek Kelap Kelip Glow Gold / Amber untuk Desa Yayasan */
+        /* Efek Glow Gold Static untuk Desa Yayasan */
         .desa-card--yayasan {
-          border: 2px solid rgba(251, 191, 36, 0.85);
           box-shadow: 
-            0 0 28px rgba(251, 191, 36, 0.55),
-            0 0 60px rgba(245, 158, 11, 0.3),
-            inset 0 0 18px rgba(251, 191, 36, 0.25);
-          animation: pulseGlowGold 2.8s infinite ease-in-out;
-          animation-delay: 1.4s;
-        }
-        @keyframes pulseGlowGold {
-          0%, 100% {
-            box-shadow: 
-              0 0 22px rgba(251, 191, 36, 0.48),
-              0 0 48px rgba(245, 158, 11, 0.26),
-              inset 0 0 14px rgba(251, 191, 36, 0.22);
-            border-color: rgba(251, 191, 36, 0.8);
-          }
-          50% {
-            box-shadow: 
-              0 0 42px rgba(251, 191, 36, 0.95),
-              0 0 82px rgba(251, 191, 36, 0.62),
-              0 0 115px rgba(245, 158, 11, 0.42),
-              inset 0 0 25px rgba(251, 191, 36, 0.4);
-            border-color: rgba(254, 240, 138, 1);
-          }
+            0 0 28px rgba(251, 191, 36, 0.15),
+            0 0 60px rgba(245, 158, 11, 0.1),
+            inset 0 0 18px rgba(251, 191, 36, 0.1);
         }
 
         /* Bintang Kelap Kelip di Sudut Kartu */
@@ -481,81 +449,19 @@ export default function ProfilDesa({ petaVectorUrl = "/images/peta_vector.png" }
           /* Removed background-attachment: fixed to prevent scroll lag */
           transform: translateZ(0);
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.48;
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
 
-        /* Animasi Gelembung Renik Samudra */
-        .profil-bubbles-wrapper {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          pointer-events: none;
-          overflow: hidden;
-        }
-        .ocean-bubble {
-          position: absolute;
-          bottom: -40px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
-          border: 1px solid rgba(186, 230, 253, 0.65);
-          box-shadow: 
-            inset 0 0 3px rgba(255, 255, 255, 0.85),
-            0 0 6px rgba(56, 189, 248, 0.35);
-          animation: floatUp var(--bubble-dur) linear infinite;
-          animation-delay: var(--bubble-del);
-          left: var(--bubble-left);
-          width: var(--bubble-size);
-          height: var(--bubble-size);
-          opacity: 0;
-          will-change: transform, opacity;
-        }
 
-        @keyframes floatUp {
-          0% {
-            transform: translate3d(0, 0, 0) scale(0.7);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.75;
-          }
-          85% {
-            opacity: 0.75;
-          }
-          100% {
-            transform: translate3d(0, -980px, 0) scale(1.1);
-            opacity: 0;
-          }
-        }
 
       `}</style>
 
       {/* Background Vector Map bercampur dengan gradasi biru */}
       <div className="profil-section-bg-vector" />
 
-      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
-      <div className="profil-bubbles-wrapper">
-        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
-      </div>
+      {/* Gelembung-Gelembung dihapus */}
 
       {/* Banner Top Seamlessly Blended (Menyatu tanpa garis potong) */}
       <div className="profil-banner" style={{ position: "relative", zIndex: 5 }}>
@@ -609,12 +515,9 @@ export default function ProfilDesa({ petaVectorUrl = "/images/peta_vector.png" }
                 Desa Kolorai
               </h4>
               <p className="desa-desc">
-                Desa pesisir maritim dengan keindahan ekowisata bahari kelas dunia, potensi usaha pesisir, serta menjadi pusat pengabdian digitalisasi pemetaan batas wilayah berbasis spasial (GIS) oleh tim KKN UGM.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
               </p>
-              <div className="desa-highlights">
-                <span className="desa-pill">Ekowisata Pesisir</span>
-                <span className="desa-pill">Pemetaan Spasial GIS</span>
-              </div>
+
             </div>
           </div>
 
@@ -637,12 +540,9 @@ export default function ProfilDesa({ petaVectorUrl = "/images/peta_vector.png" }
                 Desa Yayasan
               </h4>
               <p className="desa-desc">
-                Desa agraris dan maritim dengan keunggulan budidaya lokal, penguatan kelembagaan desa, pendampingan BUMDes, pembukuan digital UMKM, serta inovasi ketahanan pangan dan pengolahan hasil panen.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
               </p>
-              <div className="desa-highlights">
-                <span className="desa-pill">Kemandirian BUMDes</span>
-                <span className="desa-pill">Agro-Bahari Lokal</span>
-              </div>
+
             </div>
           </div>
         </div>

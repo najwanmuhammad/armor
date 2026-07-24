@@ -5,6 +5,7 @@ import TimProfile from "@/src/TentangKami/TimProfile";
 import TemaTimeline from "@/src/TemaTimeline/TemaTimeline";
 import ProfilDesa from "@/src/ProfilDesa/ProfilDesa";
 import ProgramKerja from "@/src/ProgramKerja/ProgramKerja";
+import Galeri from "@/src/Galeri/Galeri";
 import SponsorMitra from "@/src/SponsorMitra/SponsorMitra";
 import KontakFooter from "@/src/Kontak/KontakFooter";
 import { createSanityClient, getAnggota, getMitra, getPengaturanSitus } from "@arungimorotai/sanity";
@@ -47,15 +48,16 @@ export default async function Home() {
 
   return (
     <>
-      <Header logoPutihUrl={logoPutihUrl} logoHitamUrl={logoHitamUrl} />
-      <Hero videoUrl={heroVideoUrl} logoUrl={logoArmorUrl} />
+      <Header logoPutihUrl={logoArmorUrl} logoHitamUrl={logoHitamUrl} />
+      <Hero videoUrl={heroVideoUrl} logoUrl={logoPutihUrl} />
       <TentangKami petaVectorUrl={petaVectorUrl} />
       <TimProfile sanityMembers={rawMembers} petaVectorUrl={petaVectorUrl} />
       <TemaTimeline petaVectorUrl={petaVectorUrl} pasirTimbulUrl={pasirTimbulUrl} />
       <ProfilDesa petaVectorUrl={petaVectorUrl} />
       <ProgramKerja petaVectorUrl={petaVectorUrl} />
+      <Galeri petaVectorUrl={petaVectorUrl} />
       <SponsorMitra mitraData={rawMitra} petaVectorUrl={petaVectorUrl} />
-      <KontakFooter />
+      <KontakFooter petaVectorUrl={petaVectorUrl} />
     </>
   );
 }

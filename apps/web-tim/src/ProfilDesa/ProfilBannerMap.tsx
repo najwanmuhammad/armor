@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { MapContainer, Marker } from "react-leaflet";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 
 // Google Satellite Layer
 function SatelliteLayer() {

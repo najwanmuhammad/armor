@@ -117,7 +117,7 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
     <section id="program-kerja" className="proker-section">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 
         .proker-section {
           position: relative;
@@ -140,59 +140,12 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
-          /* Removed background-attachment: fixed to prevent scroll lag */
           transform: translateZ(0);
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.35; /* Slightly less opaque to keep cards readable */
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
         }
-
-        /* Animasi Gelembung Renik Samudra */
-        .proker-bubbles-wrapper {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          pointer-events: none;
-          overflow: hidden;
-        }
-        .ocean-bubble {
-          position: absolute;
-          bottom: -40px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
-          border: 1px solid rgba(186, 230, 253, 0.65);
-          box-shadow: 
-            inset 0 0 3px rgba(255, 255, 255, 0.85),
-            0 0 6px rgba(56, 189, 248, 0.35);
-          animation: floatUp var(--bubble-dur) linear infinite;
-          animation-delay: var(--bubble-del);
-          left: var(--bubble-left);
-          width: var(--bubble-size);
-          height: var(--bubble-size);
-          opacity: 0;
-          will-change: transform, opacity;
-        }
-
-        @keyframes floatUp {
-          0% {
-            transform: translate3d(0, 0, 0) scale(0.7);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.75;
-          }
-          85% {
-            opacity: 0.75;
-          }
-          100% {
-            transform: translate3d(0, -980px, 0) scale(1.1);
-            opacity: 0;
-          }
-        }
-
 
         .proker-container {
           max-width: 1240px;
@@ -204,92 +157,92 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
         /* Header */
         .proker-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: 3.5rem;
         }
+        
+        /* Premium Badge */
         .proker-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.55rem;
-          background: 
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 3px,
-              rgba(0, 0, 0, 0.18) 3px,
-              rgba(0, 0, 0, 0.18) 6px
-            ),
-            linear-gradient(135deg, #4a2f17 0%, #2f1d0d 55%, #1c1107 100%);
-          color: #fce8c5;
-          border: 1px solid rgba(230, 184, 106, 0.55);
-          padding: 0.55rem 1.45rem;
+          justify-content: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #18283b 0%, #0d1726 100%);
+          border: 1px solid rgba(230, 184, 106, 0.4);
+          color: #e6b86a;
+          padding: 0.5rem 1.25rem;
           border-radius: 9999px;
-          font-size: 0.86rem;
+          font-size: 0.8rem;
           font-weight: 700;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.15em;
           text-transform: uppercase;
-          margin-bottom: 1.25rem;
-          box-shadow: 
-            0 8px 20px rgba(0, 0, 0, 0.55),
-            inset 0 1px 3px rgba(255, 230, 160, 0.4),
-            inset 0 -3px 5px rgba(0, 0, 0, 0.9);
+          margin-bottom: 1.5rem;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.05);
         }
+
+        .proker-badge::before, .proker-badge::after {
+          content: '✦';
+          font-size: 0.6rem;
+          color: rgba(230, 184, 106, 0.6);
+        }
+
         .proker-title {
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+          font-weight: 800;
           margin-bottom: 1.2rem;
           line-height: 1.2;
           color: #ffffff;
         }
         .proker-title em {
-          font-family: 'Playfair Display', serif;
           font-style: italic;
-          color: #7dd3fc;
+          color: #e6b86a;
         }
         .proker-subtitle {
-          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-          color: #94a3b8;
+          font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+          color: #a4b4c4;
           max-width: 700px;
           margin: 0 auto;
-          line-height: 1.6;
+          line-height: 1.7;
+          font-weight: 400;
         }
 
-        /* Filter Pills */
+        /* Filter Pills — Golden Maritime Style */
         .proker-tabs {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
-          gap: 1rem;
-          margin-bottom: 3rem; /* adjusted for carousel */
+          gap: 0.85rem;
+          margin-bottom: 4rem;
         }
         .proker-tab-btn {
-          background: #141e30;
-          border: 1px solid #2a3a50;
-          color: #94a3b8;
-          padding: 0.6rem 1.4rem;
+          background: rgba(13, 23, 38, 0.8);
+          border: 1px solid rgba(230, 184, 106, 0.2);
+          color: #a4b4c4;
+          padding: 0.65rem 1.5rem;
           border-radius: 9999px;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
           cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          backdrop-filter: blur(8px);
         }
         .proker-tab-btn:hover {
-          background: #1c2a40;
-          color: #ffffff;
-          border-color: #3b4d6b;
+          background: rgba(230, 184, 106, 0.1);
+          color: #e6b86a;
+          border-color: rgba(230, 184, 106, 0.4);
         }
         .proker-tab-btn.active {
-          background: linear-gradient(135deg, #e6a03c, #fcd881);
-          color: #1a1005;
-          border-color: #fcd881;
-          box-shadow: 0 4px 15px rgba(230, 160, 60, 0.3);
-          font-weight: 700;
+          background: linear-gradient(135deg, #e6b86a 0%, #c29347 100%);
+          color: #0d1726;
+          border-color: #fce8c5;
+          box-shadow: 0 4px 20px rgba(230, 184, 106, 0.3);
+          font-weight: 800;
         }
 
-        /* Horizontal Carousel Layout */
+        /* Carousel Container */
         .proker-carousel-container {
           position: relative;
           width: 100%;
@@ -302,181 +255,226 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
           top: 50%;
           transform: translateY(-50%);
           z-index: 10;
-          background: rgba(11, 20, 35, 0.7);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          color: white;
-          width: 55px;
-          height: 55px;
+          background: linear-gradient(135deg, #18283b 0%, #0d1726 100%);
+          border: 1px solid rgba(230, 184, 106, 0.4);
+          color: #e6b86a;
+          width: 54px;
+          height: 54px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          backdrop-filter: blur(5px);
           transition: all 0.3s ease;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
         .carousel-btn:hover {
-          background: rgba(255, 255, 255, 0.15);
-          border-color: #fcd881;
-          color: #fcd881;
+          background: linear-gradient(135deg, #e6b86a 0%, #c29347 100%);
+          color: #0d1726;
+          transform: translateY(-50%) scale(1.08);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.65);
         }
-        .carousel-btn.left {
-          left: -25px;
-        }
-        .carousel-btn.right {
-          right: -25px;
-        }
+        .carousel-btn.left { left: -27px; }
+        .carousel-btn.right { right: -27px; }
 
         .proker-carousel {
           display: flex;
           overflow-x: auto;
           scroll-snap-type: x mandatory;
           scroll-behavior: smooth;
-          gap: 2.5rem;
-          padding: 1.5rem 0 2rem 0;
+          gap: 2rem;
+          padding: 1.5rem 0 3rem 0;
           width: 100%;
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
-        .proker-carousel::-webkit-scrollbar {
-          display: none; /* Chrome, Safari and Opera */
-        }
+        .proker-carousel::-webkit-scrollbar { display: none; }
 
+        /* ── Card — Premium Wooden Plaque Style ── */
         .proker-card {
-          flex: 0 0 calc(50% - 1.25rem); /* 2 cards side by side */
+          flex: 0 0 calc(50% - 1rem);
           scroll-snap-align: center;
           position: relative;
-          background: #111a28;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          padding: 2.5rem 2.5rem 2rem 2.5rem;
+          border-radius: 16px;
+          background: linear-gradient(168deg, #2a1c12 0%, #1c110a 50%, #120a05 100%);
+          border: 2px solid #4a3320;
+          border-bottom-color: #1a0f08;
+          border-right-color: #24160d;
+          padding: 2.5rem 2.2rem;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           gap: 1.5rem;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.55), inset 0 1px 2px rgba(255,230,160,0.15);
+          overflow: hidden;
         }
+
         .proker-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-8px);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 25px rgba(230, 184, 106, 0.1);
+          border-color: #63462f;
+        }
+
+        /* Inner Golden Groove */
+        .proker-card-groove {
+          position: absolute;
+          top: 8px; left: 8px; right: 8px; bottom: 8px;
+          border: 1px solid rgba(230, 184, 106, 0.2);
+          border-radius: 10px;
+          pointer-events: none;
+          z-index: 1;
+        }
+        
+        /* Subtle wood texture overlay */
+        .proker-card-texture {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          opacity: 0.4;
+          mix-blend-mode: overlay;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .proker-card-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          gap: 1.5rem;
         }
 
         .proker-card-top {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 0.75rem;
-          margin-bottom: 0.5rem;
-          position: relative;
-          z-index: 2;
+          border-bottom: 1px solid rgba(230, 184, 106, 0.15);
+          padding-bottom: 1rem;
         }
-        
-        .klaster-tag {
-          font-size: 0.75rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          padding: 0.4rem 1rem;
-          border-radius: 9999px;
-        }
-        .klaster-Saintek { background: #132a45; color: #7dd3fc; border: 1px solid #1c3d66; }
-        .klaster-Soshum { background: #332514; color: #fcd34d; border: 1px solid #4d381e; }
-        .klaster-Agro { background: #113022; color: #6ee7b7; border: 1px solid #184732; }
-        .klaster-Medika { background: #301724; color: #f9a8d4; border: 1px solid #4a2337; }
 
-        .status-badge {
-          font-size: 0.75rem;
-          font-weight: 600;
-          padding: 0.4rem 1rem;
-          border-radius: 9999px;
+        .proker-klaster {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.1rem;
+          font-style: italic;
+          color: #e6b86a;
           display: flex;
           align-items: center;
-          gap: 0.4rem;
-          background: #1e293b;
-          color: #cbd5e1;
-          border: 1px solid #334155;
+          gap: 0.5rem;
         }
-        .status-selesai { background: #064e3b; color: #34d399; border-color: #065f46; }
+        .proker-klaster::before {
+          content: '';
+          display: block;
+          width: 8px;
+          height: 8px;
+          background: #e6b86a;
+          transform: rotate(45deg);
+        }
+
+        .proker-card-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 2rem;
+          font-weight: 900;
+          color: rgba(230, 184, 106, 0.15);
+          line-height: 1;
+        }
 
         .proker-card-title {
-          font-size: 1.35rem;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 1.3rem;
           font-weight: 700;
-          color: #f8fafc;
+          color: #fdf6e3;
           line-height: 1.4;
-          position: relative;
-          z-index: 2;
-        }
-        .proker-card-desc {
-          font-size: 0.95rem;
-          color: #94a3b8;
-          line-height: 1.6;
-          position: relative;
-          z-index: 2;
         }
 
-        /* Progress & Output Box */
-        .proker-progress-container {
-          margin-top: 1rem;
+        .proker-card-desc {
+          font-size: 0.95rem;
+          color: rgba(253, 246, 227, 0.7);
+          line-height: 1.7;
+          flex-grow: 1;
         }
-        .progress-header {
+
+        /* Bottom section */
+        .proker-card-bottom {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .proker-output-box {
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(230, 184, 106, 0.1);
+          padding: 0.8rem 1rem;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          color: rgba(253, 246, 227, 0.8);
+        }
+        .proker-output-box strong {
+          color: #e6b86a;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.05em;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        /* Nautical Progress indicator */
+        .proker-progress-container {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          font-size: 0.8rem;
-          color: #cbd5e1;
-          font-weight: 600;
-          margin-bottom: 0.6rem;
+          gap: 1rem;
+          margin-top: 0.5rem;
         }
-        .progress-bar-bg {
-          width: 100%;
-          height: 6px;
-          background: #1e293b;
-          border-radius: 9999px;
-          overflow: hidden;
+        
+        .proker-status-tag {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #e6b86a;
+          background: rgba(230, 184, 106, 0.1);
+          padding: 0.35rem 0.75rem;
+          border-radius: 4px;
+          border-left: 2px solid #e6b86a;
+        }
+
+        .proker-bar-bg {
+          flex: 1;
+          height: 2px;
+          background: rgba(230, 184, 106, 0.15);
           position: relative;
         }
-        .progress-bar-fill {
-          height: 100%;
-          border-radius: 9999px;
-          transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
+        .proker-bar-fill {
+          position: absolute;
+          left: 0;
+          top: -1px;
+          height: 4px;
+          background: #e6b86a;
+          transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        /* Bright dot at the end of progress bar */
-        .progress-bar-fill::after {
+        .proker-bar-fill::after {
           content: '';
           position: absolute;
           right: 0;
           top: 50%;
           transform: translateY(-50%);
-          width: 12px;
-          height: 12px;
-          background: #ffffff;
+          width: 8px;
+          height: 8px;
+          background: #fdf6e3;
           border-radius: 50%;
-          box-shadow: 0 0 10px rgba(255,255,255,0.8);
+          box-shadow: 0 0 8px rgba(230, 184, 106, 0.8);
         }
 
-        .output-row {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.85rem;
-          color: #cbd5e1;
-          font-weight: 500;
-          margin-top: 1.5rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(255,255,255,0.06);
+        .proker-pct {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #e6b86a;
+          min-width: 45px;
+          text-align: right;
         }
 
-        /* Dynamic colors based on klaster for progress */
-        .progress-Saintek { background: linear-gradient(90deg, #0284c7, #38bdf8); box-shadow: 0 0 15px rgba(56,189,248,0.5); }
-        .progress-Soshum { background: linear-gradient(90deg, #b45309, #fbbf24); box-shadow: 0 0 15px rgba(251,191,36,0.5); }
-        .progress-Agro { background: linear-gradient(90deg, #059669, #34d399); box-shadow: 0 0 15px rgba(52,211,153,0.5); }
-        .progress-Medika { background: linear-gradient(90deg, #be185d, #f472b6); box-shadow: 0 0 15px rgba(244,114,182,0.5); }
-
-        /* Wave Curve transitioning to next section */
+        /* Wave Curve */
         .proker-wave-divider {
           position: absolute;
           bottom: -1px;
@@ -494,59 +492,28 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
         }
 
         @media (max-width: 992px) {
-          .proker-card {
-            flex: 0 0 calc(100% - 0rem); /* 1 card side by side on mobile */
-          }
+          .proker-card { flex: 0 0 calc(100%); }
           .carousel-btn.left { left: 10px; }
           .carousel-btn.right { right: 10px; }
         }
         @media (max-width: 640px) {
-          .proker-section {
-            padding: 4.5rem 1rem 6.5rem 1rem;
-          }
-          .proker-card {
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
-          }
-          .carousel-btn {
-            width: 40px;
-            height: 40px;
-          }
+          .proker-section { padding: 4.5rem 1rem 6.5rem 1rem; }
+          .proker-card { padding: 2rem 1.5rem; }
+          .carousel-btn { width: 44px; height: 44px; }
         }
       `}</style>
 
-      {/* Background Vector Map bercampur dengan gradasi biru */}
       <div className="proker-section-bg-vector" />
-
-      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
-      <div className="proker-bubbles-wrapper">
-        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
-      </div>
 
       <div className="proker-container">
         {/* Header */}
         <div className="proker-header">
-          <span className="proker-badge">Inovasi & Pengabdian Nyata</span>
+          <div className="proker-badge">Inovasi & Pengabdian</div>
           <h2 className="proker-title">
-            Program Kerja Unggulan <em>Arungi Morotai</em>
+            Program Kerja <em>Unggulan</em>
           </h2>
           <p className="proker-subtitle">
-            Rangkaian program kolaboratif lintas klaster keilmuan yang dirancang untuk menjawab tantangan dan memaksimalkan potensi unggulan desa di Pulau Morotai.
+            Rangkaian inisiatif strategis yang dirancang untuk memberdayakan potensi lokal pesisir Morotai melalui pendekatan lintas disiplin ilmu.
           </p>
         </div>
 
@@ -558,7 +525,7 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
               className={`proker-tab-btn ${activeKlaster === tab ? "active" : ""}`}
               onClick={() => setActiveKlaster(tab)}
             >
-              <span>{tab === "Semua" ? "Semua Program" : `Klaster ${tab}`}</span>
+              {tab === "Semua" ? "Semua Program" : `Klaster ${tab}`}
             </button>
           ))}
         </div>
@@ -566,44 +533,47 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
         {/* Carousel */}
         <div className="proker-carousel-container">
           <button className="carousel-btn left" onClick={scrollLeft} aria-label="Previous">
-            <ChevronLeft size={28} />
+            <ChevronLeft size={24} />
           </button>
 
           <div className="proker-carousel" ref={carouselRef}>
-            {filteredPrograms.map((prog) => {
+            {filteredPrograms.map((prog, idx) => {
+              const statusLabel = prog.status === "selesai" ? "Selesai" : prog.status === "berjalan" ? "Berlangsung" : "Persiapan";
+
               return (
                 <div key={prog.id} className="proker-card">
+                  <div className="proker-card-groove" />
+                  <div className="proker-card-texture" />
                   
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div className="proker-card-content">
                     <div className="proker-card-top">
-                      <span className={`klaster-tag klaster-${prog.klaster}`}>
-                        KLASTER {prog.klaster.toUpperCase()}
+                      <span className="proker-klaster">
+                        Klaster {prog.klaster}
                       </span>
-                      <span className={`status-badge ${prog.status === 'selesai' ? 'status-selesai' : ''}`}>
-                        {prog.status === "selesai"
-                          ? "Selesai"
-                          : prog.status === "berjalan"
-                          ? "Dalam Pelaksanaan"
-                          : "Persiapan"}
+                      <span className="proker-card-num">
+                        {String(idx + 1).padStart(2, "0")}
                       </span>
                     </div>
+                    
                     <h3 className="proker-card-title">{prog.title}</h3>
                     <p className="proker-card-desc">{prog.desc}</p>
-                  </div>
 
-                  <div className="proker-progress-container">
-                    <div className="progress-header">
-                      <span>Capaian / Progres Pelaksanaan</span>
-                      <span style={{ fontWeight: 700 }}>{prog.progress}%</span>
-                    </div>
-                    <div className="progress-bar-bg">
-                      <div
-                        className={`progress-bar-fill progress-${prog.klaster}`}
-                        style={{ width: `${prog.progress}%` }}
-                      />
-                    </div>
-                    <div className="output-row">
-                      <span><strong style={{color: "#fff"}}>Luaran Target:</strong> {prog.output}</span>
+                    <div className="proker-card-bottom">
+                      <div className="proker-output-box">
+                        <strong>Target Luaran</strong>
+                        {prog.output}
+                      </div>
+                      
+                      <div className="proker-progress-container">
+                        <span className="proker-status-tag">{statusLabel}</span>
+                        <div className="proker-bar-bg">
+                          <div
+                            className="proker-bar-fill"
+                            style={{ width: `${prog.progress}%` }}
+                          />
+                        </div>
+                        <span className="proker-pct">{prog.progress}%</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -612,17 +582,17 @@ export default function ProgramKerja({ petaVectorUrl = "/images/peta_vector.png"
           </div>
 
           <button className="carousel-btn right" onClick={scrollRight} aria-label="Next">
-            <ChevronRight size={28} />
+            <ChevronRight size={24} />
           </button>
         </div>
       </div>
 
-      {/* Wave Curve transitioning smoothly to SponsorMitra (#051c34) */}
+      {/* Wave Curve */}
       <div className="proker-wave-divider">
         <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
-          <path 
-            d="M0,70 C380,10 980,120 1440,50 L1440,120 L0,120 Z" 
-            fill="#051c34"
+          <path
+            d="M0,70 C380,10 980,120 1440,50 L1440,120 L0,120 Z"
+            fill="#0b1423"
           />
         </svg>
       </div>

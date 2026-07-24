@@ -155,12 +155,7 @@ const divisionList: DivisionCard[] = [
     ),
     reliefSvg: (
       <svg viewBox="0 0 320 440" fill="none" className="relief-canvas">
-        <defs>
-          <filter id="relief-shadow-01" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="1.5" dy="3" stdDeviation="2.5" floodColor="#0c0502" floodOpacity="0.85" />
-          </filter>
-        </defs>
-        <g filter="url(#relief-shadow-01)">
+        <g>
           {/* Deep Carved Topographic Contour Grooves */}
           <g>
             {/* Primary deep grooves (Dark shadow path + Gold highlight path) */}
@@ -218,12 +213,7 @@ const divisionList: DivisionCard[] = [
     ),
     reliefSvg: (
       <svg viewBox="0 0 320 440" fill="none" className="relief-canvas">
-        <defs>
-          <filter id="relief-shadow-02" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="1.5" dy="3" stdDeviation="2.5" floodColor="#0c0502" floodOpacity="0.85" />
-          </filter>
-        </defs>
-        <g filter="url(#relief-shadow-02)">
+        <g>
           {/* Carved Island Map (Morotai & Halmahera outlines) */}
           <g>
             <path d="M40,50 Q65,40 85,60 T130,70 T150,45 Q165,35 180,60 T160,105 T120,115 Q95,120 70,100 T40,50 Z" fill="rgba(18, 7, 3, 0.32)" stroke="#120703" strokeWidth="3" />
@@ -292,12 +282,7 @@ const divisionList: DivisionCard[] = [
     ),
     reliefSvg: (
       <svg viewBox="0 0 320 440" fill="none" className="relief-canvas">
-        <defs>
-          <filter id="relief-shadow-03" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="1.5" dy="3" stdDeviation="2.5" floodColor="#0c0502" floodOpacity="0.85" />
-          </filter>
-        </defs>
-        <g filter="url(#relief-shadow-03)">
+        <g>
           {/* Medical Cross Carved Emblem in Upper Right Background */}
           <g transform="translate(205, 70)">
             <path d="M15,0 L35,0 L35,15 L50,15 L50,35 L35,35 L35,50 L15,50 L15,35 L0,35 L0,15 L15,15 Z" fill="rgba(18, 7, 3, 0.3)" stroke="#120703" strokeWidth="3" />
@@ -361,12 +346,7 @@ const divisionList: DivisionCard[] = [
     ),
     reliefSvg: (
       <svg viewBox="0 0 320 440" fill="none" className="relief-canvas">
-        <defs>
-          <filter id="relief-shadow-04" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="1.5" dy="3" stdDeviation="2.5" floodColor="#0c0502" floodOpacity="0.85" />
-          </filter>
-        </defs>
-        <g filter="url(#relief-shadow-04)">
+        <g>
           {/* Carved Rising Sun & Rays */}
           <g transform="translate(250, 310)">
             <circle cx="0" cy="0" r="42" stroke="#120703" strokeWidth="3" strokeDasharray="80 30" fill="none" />
@@ -432,7 +412,7 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
 
   const membersToUse: TeamMember[] =
     sanityMembers && sanityMembers.length > 0
-      ? sanityMembers.map((m: any) => {
+      ? sanityMembers.map((m: any, index: number) => {
         let photoUrl = "/logo armor.png";
         if (typeof m.foto === "string") {
           photoUrl = m.foto;
@@ -444,7 +424,7 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           }
         }
         return {
-          id: m._id || Math.random().toString(),
+          id: m._id || `member-${index}`,
           name: m.nama || "Anggota Tim",
           role: m.role || "Anggota",
           jurusan: m.jurusan || "UGM",
@@ -529,54 +509,6 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           transform: rotate(40deg);
         }
 
-        /* Underwater bubbles */
-        .tim-bubbles {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-          pointer-events: none;
-          z-index: 1;
-        }
-        .tim-bubble {
-          position: absolute;
-          bottom: -20px;
-          background: radial-gradient(
-            circle at 30% 30%,
-            rgba(255, 255, 255, 0.25) 0%,
-            rgba(255, 255, 255, 0.08) 50%,
-            rgba(255, 255, 255, 0.02) 100%
-          );
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 50%;
-          animation: timBubbleRise linear infinite;
-        }
-        .tim-bubble::after {
-          content: "";
-          position: absolute;
-          top: 20%;
-          left: 25%;
-          width: 30%;
-          height: 30%;
-          background: rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-        }
-
-        @keyframes timBubbleRise {
-          0% {
-            transform: translateY(0) scale(0.6);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.8;
-          }
-          85% {
-            opacity: 0.6;
-          }
-          100% {
-            transform: translateY(-1150px) scale(1.3);
-            opacity: 0;
-          }
-        }
 
         /* Background Vector Map bercampur dengan gradasi biru pekat */
         .tim-section-bg-vector {
@@ -591,9 +523,7 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           background-attachment: fixed;
           transform: translateZ(0);
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.25;
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
@@ -1025,31 +955,31 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
         }
 
         .tim-filter-btn {
-          background: rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.8);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: linear-gradient(135deg, #3d2612 0%, #24160a 100%);
+          color: #dcb285;
+          border: 1px solid rgba(230, 184, 106, 0.3);
           padding: 0.55rem 1.3rem;
           border-radius: 999px;
           font-size: 0.85rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-          backdrop-filter: blur(4px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .tim-filter-btn:hover {
-          background: rgba(255, 255, 255, 0.18);
-          color: #ffffff;
+          background: linear-gradient(135deg, #4a2f17 0%, #2f1d0d 100%);
+          color: #fce8c5;
           transform: translateY(-2px);
-          border-color: rgba(255, 255, 255, 0.4);
+          border-color: rgba(230, 184, 106, 0.6);
         }
 
         .tim-filter-btn.active {
-          background: #ffffff;
-          color: #003D6E;
-          border-color: #ffffff;
-          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25);
-          font-weight: 700;
+          background: linear-gradient(135deg, #c98a54 0%, #8b5a2b 100%);
+          color: #1a0f08;
+          border-color: #e8c699;
+          box-shadow: 0 4px 15px rgba(201, 138, 84, 0.4);
+          font-weight: 800;
         }
 
         /* ── Anggota Tim Grid ───────────────────────── */
@@ -1066,17 +996,27 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          transition: box-shadow 0.35s ease, border-color 0.35s ease;
-          background: #0b2239;
+          background: linear-gradient(168deg, #6e4324 0%, #51311a 38%, #382110 75%, #231308 100%);
+          border: 2px solid #2f1a0b;
+          border-top-color: #945d36;
+          border-left-color: #7d4d2b;
+          border-bottom-color: #150a03;
+          border-right-color: #241307;
+          box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.55),
+            inset 0 1px 3px rgba(255, 230, 160, 0.2);
+          transition: all 0.35s ease;
           user-select: none;
         }
 
         .tim-card:hover,
         .tim-card.is-active {
-          box-shadow: 0 25px 50px rgba(0, 30, 60, 0.5);
-          border-color: rgba(147, 197, 253, 0.6);
+          transform: translateY(-6px);
+          border-top-color: #b87b48;
+          border-left-color: #a3673b;
+          box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.75),
+            inset 0 2px 5px rgba(255, 225, 180, 0.35);
         }
 
         .tim-card-bg-image {
@@ -1100,65 +1040,93 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           bottom: 0;
           left: 0;
           right: 0;
-          height: 138px;
-          background: linear-gradient(135deg, rgba(30, 64, 175, 0.94) 0%, rgba(30, 58, 138, 0.97) 100%);
-          backdrop-filter: blur(10px);
+          height: 145px;
+          background: linear-gradient(135deg, rgba(61, 38, 18, 0.95) 0%, rgba(36, 22, 10, 0.98) 100%);
+          backdrop-filter: blur(8px);
           border-radius: 22px 22px 0 0;
           padding: 14px 16px 16px 16px;
-          z-index: 2;
+          z-index: 4;
           text-align: center;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          border-top: 1px solid rgba(230, 184, 106, 0.4);
           transition: background 0.3s ease;
+          overflow: hidden;
         }
 
         .tim-card:hover .tim-card-info-box,
         .tim-card.is-active .tim-card-info-box {
-          background: linear-gradient(135deg, rgba(37, 99, 235, 0.96) 0%, rgba(30, 64, 175, 0.98) 100%);
+          background: linear-gradient(135deg, rgba(74, 47, 23, 0.98) 0%, rgba(47, 29, 13, 0.98) 100%);
         }
 
         .tim-info-name {
           font-family: 'Playfair Display', serif;
           font-size: 1.15rem;
           font-weight: 800;
-          color: #ffffff;
+          color: #fff9f0;
           margin: 0;
           line-height: 1.25;
           letter-spacing: 0.01em;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.8);
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
+          position: relative;
+          z-index: 1;
         }
 
         .tim-info-jurusan {
           font-size: 0.76rem;
-          color: #bfdbfe;
-          font-weight: 500;
+          color: #ecc99d;
+          font-weight: 600;
           margin: 3px 0 6px 0;
           line-height: 1.28;
-          opacity: 0.95;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.8);
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
+          position: relative;
+          z-index: 1;
         }
 
         .tim-info-role {
           font-size: 0.8rem;
           font-weight: 700;
-          color: #ffffff;
-          background: rgba(255, 255, 255, 0.16);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          padding: 3px 14px;
+          color: #fce8c5;
+          background: linear-gradient(135deg, #4a2f17 0%, #2f1d0d 100%);
+          border: 1px solid rgba(230, 184, 106, 0.55);
+          padding: 4px 14px;
           border-radius: 999px;
           letter-spacing: 0.02em;
           margin-top: auto;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Relief artwork positioned inside the brown info box */
+        .tim-card-relief-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          opacity: 0.55;
+        }
+
+        .tim-card-relief-bg .relief-canvas {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         @keyframes fadeIn {
@@ -1200,24 +1168,19 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
       {/* Background Vector Map */}
       <div className="tim-section-bg-vector" />
 
+      {/* Global SVG Filters for Wood Texture */}
+      <svg style={{ position: 'absolute', width: 0, height: 0 }} aria-hidden="true">
+        <filter id="global-wood-grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.35" numOctaves="4" result="noise" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0 0.03  0 0 0 0.4 0" />
+        </filter>
+      </svg>
+
       {/* Decorative armor logo ornaments */}
       <div className="tim-ornament tim-ornament-top-left" />
       <div className="tim-ornament tim-ornament-mid-right" />
       <div className="tim-ornament tim-ornament-bottom-left" />
 
-      {/* Underwater bubbles */}
-      <div className="tim-bubbles">
-        <div className="tim-bubble" style={{ left: "6%", width: "14px", height: "14px", animationDuration: "9s", animationDelay: "0s" }} />
-        <div className="tim-bubble" style={{ left: "14%", width: "9px", height: "9px", animationDuration: "11s", animationDelay: "2.5s" }} />
-        <div className="tim-bubble" style={{ left: "24%", width: "19px", height: "19px", animationDuration: "13s", animationDelay: "1s" }} />
-        <div className="tim-bubble" style={{ left: "36%", width: "7px", height: "7px", animationDuration: "8.5s", animationDelay: "4s" }} />
-        <div className="tim-bubble" style={{ left: "48%", width: "15px", height: "15px", animationDuration: "12s", animationDelay: "0.5s" }} />
-        <div className="tim-bubble" style={{ left: "58%", width: "11px", height: "11px", animationDuration: "7.5s", animationDelay: "3s" }} />
-        <div className="tim-bubble" style={{ left: "68%", width: "22px", height: "22px", animationDuration: "14s", animationDelay: "1.8s" }} />
-        <div className="tim-bubble" style={{ left: "78%", width: "8px", height: "8px", animationDuration: "9.5s", animationDelay: "5s" }} />
-        <div className="tim-bubble" style={{ left: "88%", width: "16px", height: "16px", animationDuration: "11.5s", animationDelay: "2s" }} />
-        <div className="tim-bubble" style={{ left: "94%", width: "12px", height: "12px", animationDuration: "10s", animationDelay: "3.5s" }} />
-      </div>
 
       <div className="tim-container">
         <div className="tim-header">
@@ -1225,10 +1188,7 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
           <h3 className="tim-title">
             Sosok di Balik <em>Pengabdian</em>
           </h3>
-          <p className="tim-subtitle">
-            Mahasiswa dari berbagai rumpun ilmu Universitas Gadjah Mada yang bersinergi
-            menginovasikan teknologi, tata kelola desa, dan pelestarian alam Pulau Morotai.
-          </p>
+
           <Image
             src="/logo armor.png"
             alt="Logo Arungi Morotai"
@@ -1339,12 +1299,22 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
             <div className="tim-grid">
               {filteredMembers.map((member) => {
                 const isActive = activeCardId === member.id;
+                const klasterInfo = divisionList.find(d => d.id === member.klaster);
+                const reliefSvg = klasterInfo?.reliefSvg;
+
                 return (
                   <div
                     key={member.id}
                     className={`tim-card ${isActive ? "is-active" : ""}`}
                     onClick={() => setActiveCardId(isActive ? null : member.id)}
                   >
+                    {/* Real wood grain noise overlay */}
+                    <div className="klaster-card__wood-bg" style={{ zIndex: 0 }}>
+                      <svg className="klaster-card__noise" viewBox="0 0 300 450" preserveAspectRatio="none">
+                        <rect width="100%" height="100%" filter="url(#global-wood-grain)" />
+                      </svg>
+                    </div>
+
                     <div className="tim-card-bg-image">
                       <Image
                         src={member.photo}
@@ -1356,7 +1326,15 @@ export default function TimProfile({ sanityMembers = [], petaVectorUrl = "/image
                         }}
                       />
                     </div>
+
+
                     <div className="tim-card-info-box">
+                      {/* Carved Relief Artwork on the brown info area */}
+                      {reliefSvg && (
+                        <div className="tim-card-relief-bg">
+                          {reliefSvg}
+                        </div>
+                      )}
                       <h4 className="tim-info-name">{member.name}</h4>
                       <div className="tim-info-jurusan">{member.jurusan}</div>
                       <div className="tim-info-role">{member.role}</div>

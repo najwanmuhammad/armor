@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Lokasi", href: "/#lokasi" },
   { label: "Program Kerja", href: "/#program-kerja" },
   { label: "Sponsor", href: "/#sponsor-mitra" },
-  { label: "Dokumentasi", href: "/dokumentasi" },
+  { label: "Galeri", href: "/#galeri" },
 ];
 
 interface HeaderProps {

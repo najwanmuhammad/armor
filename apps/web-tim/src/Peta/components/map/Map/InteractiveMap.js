@@ -24,12 +24,18 @@ export default function InteractiveMap({ center, zoom, kknLocations, morotaiTarg
         setIsClient(true);
     }, []);
 
-    const handleSelectLocation = useCallback((id) => {
-        const found = kknLocations.find(l => l.id === id);
-        if (found) {
-            setActiveLocation(found);
+    const handleSelectLocation = useCallback((locOrId) => {
+        if (typeof locOrId === "string") {
+            if (locOrId === "morotai_island") {
+                setActiveLocation(islandTarget);
+            } else {
+                const found = kknLocations.find(l => l.id === locOrId);
+                if (found) setActiveLocation(found);
+            }
+        } else {
+            setActiveLocation(locOrId);
         }
-    }, [kknLocations]);
+    }, [kknLocations, islandTarget]);
 
     const handleResetOverview = useCallback(() => {
         setActiveLocation(null);

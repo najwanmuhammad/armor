@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 import SaberLoadingProvider from "@/src/Loading/SaberLoadingProvider";
 import { createSanityClient, getPengaturanSitus } from "@arungimorotai/sanity";
 
@@ -78,13 +79,13 @@ export default async function RootLayout({
   };
 
   const logoPutih = findLogoUrl("putih", "/Logo Putih.png");
-  const logoKilauCita = findLogoUrl("kilau cita", "/Logo Putih.png");
+  
   return (
     <html lang="en">
       <body
         className={`${madeTommy.variable} ${madeTommy.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SaberLoadingProvider logoPutihUrl={logoPutih} logoKilauUrl={logoKilauCita}>
+        <SaberLoadingProvider logoPutihUrl={logoPutih} logoKilauUrl={logoPutih}>
           {children}
         </SaberLoadingProvider>
       </body>

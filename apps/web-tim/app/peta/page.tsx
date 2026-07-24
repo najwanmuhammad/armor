@@ -1,4 +1,3 @@
-import "leaflet/dist/leaflet.css";
 import "@/src/Peta/peta.css";
 import Peta from "@/src/Peta/Peta";
 import Header from "@/src/Header/Header";

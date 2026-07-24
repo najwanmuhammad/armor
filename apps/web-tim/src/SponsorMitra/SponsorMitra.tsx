@@ -17,6 +17,7 @@ interface SanityMitra {
 
 interface SponsorMitraProps {
   mitraData?: SanityMitra[];
+  petaVectorUrl?: string;
 }
 
 const client = createSanityClient({
@@ -111,55 +112,12 @@ export default function SponsorMitra({ mitraData = [], petaVectorUrl = "/images/
           /* Removed background-attachment: fixed to prevent scroll lag */
           transform: translateZ(0);
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.25;
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
 
-        /* Animasi Gelembung Renik Samudra */
-        .sponsor-bubbles-wrapper {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          pointer-events: none;
-          overflow: hidden;
-        }
-        .ocean-bubble {
-          position: absolute;
-          bottom: -40px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(125, 211, 252, 0.45) 50%, rgba(14, 76, 132, 0.15) 85%);
-          border: 1px solid rgba(186, 230, 253, 0.65);
-          box-shadow: 
-            inset 0 0 3px rgba(255, 255, 255, 0.85),
-            0 0 6px rgba(56, 189, 248, 0.35);
-          animation: floatUp var(--bubble-dur) linear infinite;
-          animation-delay: var(--bubble-del);
-          left: var(--bubble-left);
-          width: var(--bubble-size);
-          height: var(--bubble-size);
-          opacity: 0;
-          will-change: transform, opacity;
-        }
 
-        @keyframes floatUp {
-          0% {
-            transform: translate3d(0, 0, 0) scale(0.7);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.75;
-          }
-          85% {
-            opacity: 0.75;
-          }
-          100% {
-            transform: translate3d(0, -980px, 0) scale(1.1);
-            opacity: 0;
-          }
-        }
 
 
         .sponsor-container {
@@ -405,26 +363,7 @@ export default function SponsorMitra({ mitraData = [], petaVectorUrl = "/images/
       {/* Background Vector Map */}
       <div className="sponsor-section-bg-vector" />
 
-      {/* Gelembung-Gelembung Renik Udara Laut Pasifik */}
-      <div className="sponsor-bubbles-wrapper">
-        <div className="ocean-bubble" style={{ "--bubble-left": "5%", "--bubble-size": "8px", "--bubble-dur": "16s", "--bubble-del": "0s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "12%", "--bubble-size": "14px", "--bubble-dur": "19s", "--bubble-del": "2s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "18%", "--bubble-size": "6px", "--bubble-dur": "14s", "--bubble-del": "5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "24%", "--bubble-size": "16px", "--bubble-dur": "22s", "--bubble-del": "1s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "31%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "7s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "38%", "--bubble-size": "18px", "--bubble-dur": "24s", "--bubble-del": "3s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "45%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "9s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "52%", "--bubble-size": "15px", "--bubble-dur": "20s", "--bubble-del": "4s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "59%", "--bubble-size": "9px", "--bubble-dur": "16s", "--bubble-del": "11s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "66%", "--bubble-size": "17px", "--bubble-dur": "21s", "--bubble-del": "6s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "73%", "--bubble-size": "11px", "--bubble-dur": "18s", "--bubble-del": "0.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "80%", "--bubble-size": "14px", "--bubble-dur": "23s", "--bubble-del": "8s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "87%", "--bubble-size": "8px", "--bubble-dur": "15s", "--bubble-del": "12s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "93%", "--bubble-size": "16px", "--bubble-dur": "19s", "--bubble-del": "3.5s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "97%", "--bubble-size": "10px", "--bubble-dur": "17s", "--bubble-del": "10s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "28%", "--bubble-size": "12px", "--bubble-dur": "18s", "--bubble-del": "14s" } as React.CSSProperties} />
-        <div className="ocean-bubble" style={{ "--bubble-left": "62%", "--bubble-size": "7px", "--bubble-dur": "15s", "--bubble-del": "15s" } as React.CSSProperties} />
-      </div>
+      {/* Gelembung-Gelembung dihapus */}
 
       <div className="sponsor-container">
         {/* Header */}
@@ -544,12 +483,12 @@ export default function SponsorMitra({ mitraData = [], petaVectorUrl = "/images/
 
       </div>
 
-      {/* Wave Curve transitioning smoothly to KontakFooter (#031428) */}
+      {/* Wave Curve transitioning smoothly to KontakFooter (#030c17) */}
       <div className="sponsor-wave-divider">
         <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
           <path
             d="M0,50 C360,110 1080,20 1440,60 L1440,120 L0,120 Z"
-            fill="#031428"
+            fill="#030c17"
           />
         </svg>
       </div>

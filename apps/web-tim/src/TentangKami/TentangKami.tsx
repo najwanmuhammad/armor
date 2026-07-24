@@ -94,54 +94,6 @@ export default function TentangKami({ petaVectorUrl = "/images/peta_vector.png" 
           transform: rotate(45deg);
         }
 
-        /* Underwater bubbles */
-        .tentang-bubbles {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-          pointer-events: none;
-          z-index: 1;
-        }
-        .tentang-bubble {
-          position: absolute;
-          bottom: -20px;
-          background: radial-gradient(
-            circle at 30% 30%,
-            rgba(255, 255, 255, 0.25) 0%,
-            rgba(255, 255, 255, 0.08) 50%,
-            rgba(255, 255, 255, 0.02) 100%
-          );
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 50%;
-          animation: bubbleRise linear infinite;
-        }
-        .tentang-bubble::after {
-          content: "";
-          position: absolute;
-          top: 20%;
-          left: 25%;
-          width: 30%;
-          height: 30%;
-          background: rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-        }
-
-        @keyframes bubbleRise {
-          0% {
-            transform: translateY(0) scale(0.6);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.8;
-          }
-          85% {
-            opacity: 0.6;
-          }
-          100% {
-            transform: translateY(-950px) scale(1.3);
-            opacity: 0;
-          }
-        }
 
         /* Container & Layout */
         .tentang-container {
@@ -279,9 +231,7 @@ export default function TentangKami({ petaVectorUrl = "/images/peta_vector.png" 
           background-attachment: fixed;
           transform: translateZ(0); /* GPU acceleration */
           will-change: transform;
-          mix-blend-mode: soft-light;
-          opacity: 0.25;
-          filter: invert(1) contrast(1.4) brightness(1.15);
+          opacity: 0.15;
           mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 10%, black 90%, transparent 100%);
         }
@@ -294,18 +244,6 @@ export default function TentangKami({ petaVectorUrl = "/images/peta_vector.png" 
       <div className="tentang-ornament tentang-ornament-top-right" />
       <div className="tentang-ornament tentang-ornament-bottom-left" />
 
-      {/* Underwater bubbles */}
-      <div className="tentang-bubbles">
-        <div className="tentang-bubble" style={{ left: "5%", width: "12px", height: "12px", animationDuration: "8s", animationDelay: "0s" }} />
-        <div className="tentang-bubble" style={{ left: "15%", width: "8px", height: "8px", animationDuration: "10s", animationDelay: "2s" }} />
-        <div className="tentang-bubble" style={{ left: "25%", width: "18px", height: "18px", animationDuration: "12s", animationDelay: "1s" }} />
-        <div className="tentang-bubble" style={{ left: "38%", width: "6px", height: "6px", animationDuration: "9s", animationDelay: "4s" }} />
-        <div className="tentang-bubble" style={{ left: "50%", width: "14px", height: "14px", animationDuration: "11s", animationDelay: "0.5s" }} />
-        <div className="tentang-bubble" style={{ left: "62%", width: "10px", height: "10px", animationDuration: "7s", animationDelay: "3s" }} />
-        <div className="tentang-bubble" style={{ left: "72%", width: "20px", height: "20px", animationDuration: "13s", animationDelay: "1.5s" }} />
-        <div className="tentang-bubble" style={{ left: "82%", width: "7px", height: "7px", animationDuration: "8.5s", animationDelay: "5s" }} />
-        <div className="tentang-bubble" style={{ left: "90%", width: "15px", height: "15px", animationDuration: "10.5s", animationDelay: "2.5s" }} />
-      </div>
 
       <div className="tentang-container">
         {/* Left: Image */}

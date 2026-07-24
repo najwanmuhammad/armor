@@ -4,9 +4,13 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function KontakFooter() {
+interface KontakFooterProps {
+  petaVectorUrl?: string;
+}
+
+export default function KontakFooter({ petaVectorUrl = "/images/peta_vector.png" }: KontakFooterProps) {
   return (
-    <footer id="kontak" className="kontak-footer-section">
+    <footer id="kontak" className="kontak-footer-section" style={{ "--bg-url": `url('${petaVectorUrl}')` } as React.CSSProperties}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
 
@@ -15,22 +19,38 @@ export default function KontakFooter() {
           width: 100%;
           background: #030c17;
           color: #ffffff;
-          padding: 6rem 2rem 3rem 2rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 3.5rem 2rem 1.5rem 2rem;
           z-index: 10;
+          overflow: hidden;
+        }
+
+        .kf-bg-vector {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background-image: var(--bg-url);
+          background-size: cover;
+          background-position: center bottom;
+          background-repeat: no-repeat;
+          opacity: 0.08;
+          mask-image: linear-gradient(180deg, transparent 0%, black 20%, black 100%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 20%, black 100%);
         }
 
         .kf-container {
           max-width: 1240px;
           margin: 0 auto;
+          position: relative;
+          z-index: 2;
         }
 
         /* Top Grid */
         .kf-grid {
           display: grid;
           grid-template-columns: 1.4fr 0.8fr 1.2fr;
-          gap: 3.5rem;
-          margin-bottom: 5rem;
+          gap: 2.5rem;
+          margin-bottom: 2.5rem;
         }
 
         /* Brand Column */
@@ -138,7 +158,7 @@ export default function KontakFooter() {
 
         /* Bottom Copyright */
         .kf-bottom {
-          padding-top: 2.5rem;
+          padding-top: 1.5rem;
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           display: flex;
           align-items: center;
@@ -165,6 +185,9 @@ export default function KontakFooter() {
           }
         }
       `}</style>
+
+      {/* Background Vector Map */}
+      <div className="kf-bg-vector" />
 
       <div className="kf-container">
         <div className="kf-grid">
@@ -210,7 +233,7 @@ export default function KontakFooter() {
               <li><Link href="/#lokasi">Profil Desa</Link></li>
               <li><Link href="/#program-kerja">Program Kerja</Link></li>
               <li><Link href="/#sponsor-mitra">Sponsor & Mitra</Link></li>
-              <li><Link href="/dokumentasi">Dokumentasi</Link></li>
+              <li><Link href="/#galeri">Galeri</Link></li>
             </ul>
           </div>
 
